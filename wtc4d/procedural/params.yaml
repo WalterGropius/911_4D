@@ -1,0 +1,93 @@
+# Parameters for the procedural 4D baseline (wtc4d.procedural).
+#
+# Every number below is either:
+#   (a) sourced -- traceable to NIST NCSTAR 1 / NCSTAR 1A, published METAR
+#       observations, or widely cited frame-by-frame video analyses, or
+#   (b) an explicit artistic default -- a reasonable, clearly-labelled
+#       choice made for visual coherence where no authoritative number
+#       exists (e.g. plume turbulence constants, debris colour).
+# Event *times* (impact, collapse) are NOT duplicated here: they live in
+# wtc4d.timeline, which is the single source of truth for those.
+
+wind:
+  # Surface wind that morning was from the northwest at ~10-15 kt (LGA/EWR
+  # METARs around 08:51-09:51 EDT, 09/11/2001; see wtc4d.world.WIND_NOTES).
+  # Aloft, near the roofline, flow was more westerly and stronger -- this is
+  # a coarse two-level approximation of a real wind profile, not a sounding.
+  surface:
+    from_deg: 305.0   # source: LGA METAR ~305-310 deg, 09/11/2001 morning
+    speed_kt: 12.0     # source: LGA/EWR METAR, 10-15 kt range
+  aloft:
+    from_deg: 285.0   # artistic: within the documented "more westerly aloft" range
+    speed_kt: 24.0     # artistic: "stronger aloft", no sounding on hand
+  reference_height_m: 400.0  # height at which the "aloft" values fully apply
+
+towers:
+  wtc1:
+    # NIST NCSTAR 1 gives the collapse *initiation* time (10:28:22) but not a
+    # single canonical duration; ~9-11 s to last visible motion is the
+    # commonly cited range from independent video-frame analyses.
+    collapse_duration_s: 11.0
+    antenna_drop_lead_s: 1.5  # artistic: antenna motion visible briefly before the roofline drops
+  wtc2:
+    collapse_duration_s: 10.0  # commonly cited video-analysis estimate
+    tilt_phase_s: 4.0            # artistic: duration of the visible top-block tilt before full descent
+    tilt_max_deg: 8.0             # approx, from video analyses of the initial tilt (~7-8 deg)
+    tilt_azimuth_deg: 100.0       # ESE-ish; matches widely reported "tilts toward east/south-east"
+  fire:
+    spread_time_s: 5400.0  # artistic: visible fire extent grows over roughly 1.5 h of burning
+  rubble:
+    height_m: 18.0  # artistic ("a few storeys"); FEMA/NIST photos show a highly variable pile, up to ~20 m in places
+  remnant:
+    # The WTC1 north-face facade remnant ("the shard") stood at the
+    # northwest corner of the footprint for several weeks after 9/11.
+    wtc1_height_m: 30.0  # artistic, approx 8 storeys, consistent with published photos
+
+dust:
+  # No single source gives a debris-front velocity; several documentary
+  # video analyses put the initial ground-hugging front at roughly
+  # 10-15 m/s, decelerating -- modelled here as diffusive (~sqrt(t)) growth.
+  front_rate_m_s2_sqrt: 3.5  # radius(t) ~= front_rate * sqrt(seconds since collapse), metres
+  max_radius_m: 500.0
+  canyon_gain: 0.6   # artistic anisotropy: biases spread along the north-south / east-west street grid
+  thin_start_s: 900.0   # artistic: cloud visibly begins thinning ~15 min after collapse
+  thin_tau_s: 1200.0
+
+smoke:
+  emit_interval_s: 8.0
+  max_age_s: 2400.0
+  rise_rate_m_s: 4.0       # artistic buoyant rise rate before the plume levels off
+  level_height_m: 700.0     # artistic levelling altitude above plaza datum
+  base_scale_m: 15.0
+  growth_per_sqrt_s: 2.2    # turbulent (Taylor-diffusion-like) spreading, artistic coefficient
+  opacity0: 0.55
+  decay_per_s: 0.0025
+  color_fade_age_s: 600.0   # dark, fuel-rich smoke fades toward lighter grey over ~10 min
+
+aux_buildings:
+  # 7 WTC: geometry from wtc4d.world.LANDMARKS_BY_ID["wtc7_roof"] (roof
+  # height 174 m). It took falling debris around the WTC1 collapse and
+  # burned through the afternoon before collapsing at 17:20:52 (NCSTAR 1A).
+  wtc7:
+    footprint_m: 100.0  # approx, 7 WTC's footprint was roughly 100 x 140 m; square placeholder
+    collapse_duration_s: 6.5  # NIST NCSTAR 1A: consistent with the observed near-free-fall descent
+    damage_start_offset_s: 0.0  # struck by WTC1 debris at approximately WTC1's collapse time
+  # 3 WTC (Marriott World Trade Center): not in wtc4d.world.LANDMARKS yet
+  # (geo workstream owns the authoritative registry); centre/height below
+  # are approximate placeholders, clearly artistic pending survey data.
+  three_wtc:
+    center_lat: 40.70990   # approx, south of the plaza between WTC2 and West St
+    center_lon: -74.01185
+    height_m: 106.0          # approx, ~22 storeys
+    footprint_m: 60.0
+    crushed_start_offset_s: 20.0  # after WTC2 collapse; artistic
+    crushed_duration_s: 90.0
+
+ground:
+  half_extent_m: 350.0
+  grid_step_m: 40.0
+
+skyline:
+  default_footprint_m: 35.0  # placeholder footprint for LANDMARKS-derived boxes; geo workstream owns real footprints
+
+seed: 0

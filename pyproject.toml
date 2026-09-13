@@ -48,6 +48,7 @@ camreg = [
 
 # procedural: procedural 4D baseline (towers, smoke, collapse) -> gaussians
 procedural = [
+    "Pillow>=10.0",
 ]
 
 # recon: gaussian splat training (static per epoch and 4D)
