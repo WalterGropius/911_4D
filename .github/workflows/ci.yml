@@ -1,0 +1,36 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install uv
+        run: pipx install uv
+      - name: Install package with all extras
+        run: |
+          uv venv .venv
+          . .venv/bin/activate
+          uv pip install -e ".[all,dev]"
+      - name: Ruff
+        run: |
+          . .venv/bin/activate
+          ruff check .
+      - name: Pytest
+        run: |
+          . .venv/bin/activate
+          pytest

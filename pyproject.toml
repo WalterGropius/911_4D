@@ -1,0 +1,84 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wtc4d"
+version = "0.0.1"
+description = "911_4D: a 4D (space + time) reconstruction of the World Trade Center attacks from all available footage."
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.26",
+    "pydantic>=2.5",
+    "pyyaml>=6.0",
+    "typer>=0.12",
+    "rich>=13.0",
+]
+
+[project.scripts]
+wtc4d = "wtc4d.cli:main"
+
+# ---------------------------------------------------------------------------
+# Optional dependency groups. ONE GROUP PER WORKSTREAM.
+# Each workstream edits ONLY its own group (keep the blank lines between
+# groups so independent branches merge cleanly). Everything must be
+# pip-installable on Ubuntu x86_64 CPU (CI installs ".[all,dev]").
+# GPU-only or non-pip tools (COLMAP binaries, CUDA kernels) belong in
+# infra/modal images, not here; guard imports with pytest.importorskip.
+# ---------------------------------------------------------------------------
+[project.optional-dependencies]
+
+# corpus: footage discovery, cataloguing, download, dedup, shot detection
+corpus = [
+]
+
+# sync: temporal alignment of footage to absolute time
+sync = [
+]
+
+# geo: static scene prior (Lower Manhattan circa 2001-09-11)
+geo = [
+]
+
+# camreg: camera registration (intrinsics + pose in the world frame)
+camreg = [
+]
+
+# procedural: procedural 4D baseline (towers, smoke, collapse) -> gaussians
+procedural = [
+]
+
+# recon: gaussian splat training (static per epoch and 4D)
+recon = [
+]
+
+# infra: Modal apps and job dispatch helpers
+infra = [
+]
+
+# all: union of the groups above (keep in sync when adding a group)
+all = [
+    "wtc4d[corpus,sync,geo,camreg,procedural,recon,infra]",
+]
+
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.5",
+]
+
+[tool.setuptools.packages.find]
+include = ["wtc4d*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "B", "UP"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "wtc4d"]
+addopts = "-q"

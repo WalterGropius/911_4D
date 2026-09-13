@@ -1,0 +1,55 @@
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# node
+node_modules/
+web/dist/
+
+# media & large data: never commit footage or big binaries
+data/raw/
+data/frames/
+data/cache/
+data/splats/
+*.mp4
+*.mkv
+*.mov
+*.avi
+*.webm
+*.ts
+*.mpg
+*.mpeg
+*.flv
+*.wmv
+*.png
+*.jpg
+*.jpeg
+*.tif
+*.tiff
+*.ply
+*.splat
+*.spz
+*.ksplat
+*.las
+*.laz
+*.npz
+*.npy
+*.pt
+*.pth
+*.ckpt
+!docs/**/*.png
+!docs/**/*.jpg
+!web/public/**/*.png
+
+# misc
+.DS_Store
+.env
+*.log
