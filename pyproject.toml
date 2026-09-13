@@ -52,6 +52,10 @@ geo = [
 
 # camreg: camera registration (intrinsics + pose in the world frame)
 camreg = [
+    "opencv-python-headless>=4.8",
+    "scipy>=1.11",
+    "pillow>=10.0",
+    "matplotlib>=3.8",
 ]
 
 # procedural: procedural 4D baseline (towers, smoke, collapse) -> gaussians

@@ -1,0 +1,248 @@
+{
+  "shot_id": "demo-jc-exchange-place",
+  "frame_idx": 0,
+  "image_width": 720,
+  "image_height": 480,
+  "observations": [
+    {
+      "landmark_id": "brooklyn_bridge_brooklyn_tower",
+      "u": 467.99618986962264,
+      "v": 347.10298308328004,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "brooklyn_bridge_manhattan_tower",
+      "u": 418.7887566997227,
+      "v": 346.4971505302688,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "deutsche_bank_roof",
+      "u": 533.9487344219773,
+      "v": 265.624323398708,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "forty_wall_spire",
+      "u": 612.3045539598614,
+      "v": 210.16844506266307,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "millenium_hilton_roof",
+      "u": 359.380863865403,
+      "v": 260.7599804931677,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "one_liberty_plaza_roof",
+      "u": 496.51262791649117,
+      "v": 230.08955693146746,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "verizon_roof",
+      "u": 170.07540194084933,
+      "v": 255.2650523980222,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wfc1_roof",
+      "u": 412.6017062269424,
+      "v": 226.89144110256413,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wfc2_roof",
+      "u": 300.2876315003252,
+      "v": 207.94547881721118,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wfc3_roof",
+      "u": 216.61854365871216,
+      "v": 175.22132330626152,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wfc4_roof",
+      "u": 151.05916035031788,
+      "v": 234.67104232202541,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "woolworth_spire",
+      "u": 241.49885798880683,
+      "v": 223.61378875062798,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc1_base_ne",
+      "u": 322.3214537076089,
+      "v": 384.85133751326066,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc1_base_nw",
+      "u": 341.2252642442871,
+      "v": 386.92631991297003,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc1_base_se",
+      "u": 375.9383532223041,
+      "v": 386.0203695755443,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc1_base_sw",
+      "u": 386.2405685298269,
+      "v": 382.189405099695,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc1_roof_ne",
+      "u": 329.5747735728042,
+      "v": 56.632682168291105,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc1_roof_nw",
+      "u": 344.9747493719726,
+      "v": 47.959697085258654,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc1_roof_se",
+      "u": 378.7644883401302,
+      "v": 60.85566523286902,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc1_roof_sw",
+      "u": 396.1465302355949,
+      "v": 50.47940445701088,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc2_base_ne",
+      "u": 425.8534649298795,
+      "v": 390.37812271175295,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc2_base_nw",
+      "u": 449.3382032931021,
+      "v": 388.94843481022457,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc2_base_se",
+      "u": 471.6875831969195,
+      "v": 382.51913105278106,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc2_base_sw",
+      "u": 489.1532167548913,
+      "v": 384.5544324699141,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc2_roof_ne",
+      "u": 434.54365741226036,
+      "v": 76.1348205219471,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc2_roof_nw",
+      "u": 453.0089376034779,
+      "v": 69.01970461438869,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc2_roof_se",
+      "u": 477.20223455580384,
+      "v": 78.76130982492911,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc2_roof_sw",
+      "u": 494.10768444218303,
+      "v": 68.10843378540204,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc7_roof",
+      "u": 193.29505300752353,
+      "v": 246.402002775883,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    }
+  ],
+  "image_sha256": null,
+  "image_path": null,
+  "camera_prior_id": "jc_exchange_place",
+  "custom_points": {},
+  "annotator": "camreg-demo",
+  "created_at": "2026-09-13T16:01:27.278320Z",
+  "notes": "SYNTHETIC DEMONSTRATION ANNOTATION: no archival footage was available in this sandboxed development session (no image download/licensing check performed), so these observations were generated by rendering the wtc4d.camreg.synthetic prior from a plausible camera at this vantage point and adding realistic click noise (sigma_px=2.0), rather than by a human clicking a real frame. Replace with a real annotation before treating this pose as authoritative. Classic Jersey City Exchange Place waterfront view, looking east across the Hudson.",
+  "schema_version": 1
+}
