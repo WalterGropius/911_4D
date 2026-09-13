@@ -143,12 +143,20 @@ def test_run_job_writes_log_and_result(data_root):
     assert on_disk == result
 
 
-def test_smoke_test_gpu_degrades_without_torch_or_nvidia_smi(data_root):
+def test_smoke_test_gpu_degrades_without_a_gpu(data_root):
     from infra.modal.jobs import run_job
 
     result = run_job({"kind": "smoke_test_gpu", "job_id": "t-smoke2"})
     assert result["kind"] == "smoke_test_gpu"
-    assert result["torch_installed"] is False
+    # Whether `torch` itself is *installed* now depends on which workstream
+    # extras are present (e.g. `recon` needs a CPU-installable torch for its
+    # reference rasteriser) -- that is no longer something this environment
+    # guarantees either way, so it is not asserted here. What the smoke test
+    # actually exists to check is that it correctly reports "no usable GPU"
+    # when there is none, which holds regardless of torch's presence: with
+    # torch installed, `cuda_available` comes from `torch.cuda.is_available()`
+    # (false without a GPU); without torch, the handler's `except ImportError`
+    # path reports the same `False`.
     assert result["cuda_available"] is False
     assert result["ok"] is False  # a real smoke test SHOULD fail without a GPU
 
