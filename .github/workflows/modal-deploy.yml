@@ -1,0 +1,48 @@
+name: modal-deploy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "infra/**"
+      - "wtc4d/**"
+  workflow_dispatch: {}
+
+concurrency:
+  group: modal-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Check Modal secrets
+        id: secrets_check
+        run: |
+          if [ -z "${MODAL_TOKEN_ID}" ] || [ -z "${MODAL_TOKEN_SECRET}" ]; then
+            echo "::warning::MODAL_TOKEN_ID and/or MODAL_TOKEN_SECRET repository secrets are not set; skipping modal deploy. See infra/README.md."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
+          MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
+
+      - name: Install modal
+        if: steps.secrets_check.outputs.skip == 'false'
+        run: pip install "modal==1.5.5"
+
+      - name: Deploy job app
+        if: steps.secrets_check.outputs.skip == 'false'
+        env:
+          MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
+          MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
+        run: modal deploy infra/modal/jobs.py

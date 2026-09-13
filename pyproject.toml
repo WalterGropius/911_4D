@@ -56,6 +56,9 @@ recon = [
 
 # infra: Modal apps and job dispatch helpers
 infra = [
+    "modal==1.5.5",
+    "requests>=2.31,<3",
+    "yamllint>=1.35,<2",
 ]
 
 # all: union of the groups above (keep in sync when adding a group)
