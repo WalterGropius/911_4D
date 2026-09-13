@@ -1,0 +1,50 @@
+{
+ "metadata": {
+  "access-restricted-item": "true",
+  "addeddate": "2011-08-11 06:06:33",
+  "aspect_ratio": "4:3",
+  "audio_codec": "mp2",
+  "audio_sample_rate": "44100",
+  "backup_location": "ia903702_15",
+  "collection": [
+   "TV-CNN",
+   "911",
+   "tvarchive",
+   "television",
+   "tvnews"
+  ],
+  "color": "color",
+  "contributor": "CNN",
+  "date": "2001-09-11",
+  "description": "News/Business.  (CC)",
+  "frames_per_second": "29.97",
+  "identifier": "CNN_20010911_130000_CNN_Live_This_Morning",
+  "identifier-access": "http://www.archive.org/details/CNN_20010911_130000_CNN_Live_This_Morning",
+  "imagecount": "10798",
+  "mediatype": "movies",
+  "next_item": "CNN_20010911_160000_CNN_Live_Today",
+  "notes": "This material may be protected by copyright law (Title 17 U.S. Code).",
+  "previous_item": "CNN_20010911_110000_CNN_Live_at_Daybreak",
+  "publicdate": "2011-08-11 06:06:33",
+  "runtime": "02:59:57",
+  "scandate": "20010911130000",
+  "scanningcenter": "Bowie, MD, USA",
+  "sound": "sound",
+  "source": "DISH Network > FutureTel NS320 > tail -c +306846720 V08527-04.mpg; cat V08527-08.mpg; cat V08527-12.mpg; cat V08527-16.mpg; bytes V08527-20.mpg 0 646626303",
+  "source_pixel_height": "480",
+  "source_pixel_width": "480",
+  "sponsor": "Internet Archive",
+  "start_localtime": "2001-09-11 09:00:00",
+  "start_time": "2001-09-11 13:00:00",
+  "stop_time": "2001-09-11 15:59:58",
+  "subject": [
+   "CNN Live This Morning",
+   "Television Program"
+  ],
+  "title": "CNN Live This Morning : CNN : September 11, 2001 9:00am-11:59am EDT",
+  "uploader": "tv@archive.org",
+  "utc_offset": "-400",
+  "video_codec": "mpeg2video",
+  "year": "2001"
+ }
+}
