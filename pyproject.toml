@@ -56,6 +56,9 @@ recon = [
 
 # infra: Modal apps and job dispatch helpers
 infra = [
+    "modal==1.5.5",
+    "requests>=2.31,<3",
+    "yamllint>=1.35,<2",
 ]
 
 # all: union of the groups above (keep in sync when adding a group)
@@ -69,7 +72,11 @@ dev = [
 ]
 
 [tool.setuptools.packages.find]
-include = ["wtc4d*"]
+# infra* added by the infra workstream: infra/ is a real importable package
+# (infra/dispatch.py, infra/modal/*), not just data files, so it needs the
+# same package discovery as wtc4d* or a strict/PEP 660 editable install
+# (e.g. `uv pip install -e`) won't put it on sys.path.
+include = ["wtc4d*", "infra*"]
 
 [tool.ruff]
 line-length = 100

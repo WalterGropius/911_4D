@@ -1,0 +1,118 @@
+name: modal-job
+
+on:
+  workflow_dispatch:
+    inputs:
+      job_spec:
+        description: 'Job spec JSON, e.g. {"kind": "smoke_test_gpu"}'
+        required: true
+        default: '{"kind": "smoke_test_gpu"}'
+      gpu:
+        description: "GPU type (none for a CPU-only job)"
+        required: false
+        default: "none"
+        type: choice
+        options:
+          - none
+          - T4
+          - L4
+          - A10G
+          - A100
+          - H100
+      timeout_min:
+        description: "Per-job timeout in minutes (Modal-side)"
+        required: false
+        default: "15"
+      ref:
+        description: "Git ref to check out and run from"
+        required: false
+        default: "main"
+
+concurrency:
+  group: modal-job-${{ github.run_id }}
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    # Generous fixed ceiling for the runner step itself; the Modal-side
+    # per-job budget is `timeout_min`, enforced inside jobs.py.
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Check Modal secrets
+        run: |
+          if [ -z "${MODAL_TOKEN_ID}" ] || [ -z "${MODAL_TOKEN_SECRET}" ]; then
+            echo "::error::MODAL_TOKEN_ID and/or MODAL_TOKEN_SECRET repository secrets are not set. Add them under Settings -> Secrets and variables -> Actions (see infra/README.md), then re-run this workflow."
+            exit 1
+          fi
+        env:
+          MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
+          MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
+
+      - name: Install modal
+        run: pip install "modal==1.5.5"
+
+      - name: Run Modal job
+        env:
+          MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
+          MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
+        run: |
+          set -o pipefail
+          modal run infra/modal/jobs.py \
+            --spec '${{ inputs.job_spec }}' \
+            --gpu '${{ inputs.gpu }}' \
+            --timeout-min '${{ inputs.timeout_min }}' \
+            2>&1 | tee modal_output.log
+
+      - name: Extract result JSON
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import json
+          import pathlib
+          import re
+
+          text = pathlib.Path("modal_output.log").read_text()
+          m = re.search(r"^RESULT_JSON:(.*)$", text, re.MULTILINE)
+          if m:
+              result = json.loads(m.group(1))
+          else:
+              result = {"ok": False, "error": "no RESULT_JSON line found in modal run output"}
+          pathlib.Path("result.json").write_text(json.dumps(result, indent=2))
+          PY
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "### Modal job result"
+            echo '```json'
+            cat result.json
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload log + result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: modal-job-${{ github.run_id }}
+          path: |
+            modal_output.log
+            result.json
+          if-no-files-found: warn
+
+      - name: Fail if the job did not succeed
+        if: always()
+        run: |
+          python3 -c "
+          import json, sys
+          result = json.load(open('result.json'))
+          sys.exit(0 if result.get('ok') else 1)
+          "
