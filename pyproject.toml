@@ -32,6 +32,14 @@ wtc4d = "wtc4d.cli:main"
 
 # corpus: footage discovery, cataloguing, download, dedup, shot detection
 corpus = [
+    "internetarchive>=5.0",
+    "yt-dlp>=2024.8.1",
+    "opencv-python-headless>=4.9",
+    "scenedetect>=0.6.3",
+    "imagehash>=4.3",
+    "pillow>=10.0",
+    "requests>=2.31",
+    "tqdm>=4.66",
 ]
 
 # sync: temporal alignment of footage to absolute time
