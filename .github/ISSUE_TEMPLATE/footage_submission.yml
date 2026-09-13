@@ -1,0 +1,127 @@
+name: Footage submission
+description: >-
+  Point us at footage (video or photo) from 2001-09-11 that isn't yet
+  catalogued, including footage you filmed yourself.
+title: "[footage] "
+labels: ["footage", "corpus"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping extend the corpus. Please read
+        [`docs/ethics.md`](../../docs/ethics.md) first, especially
+        "Footage of victims and first responders" — this determines how
+        footage containing people is handled regardless of what else it
+        shows. See [`docs/licensing.md`](../../docs/licensing.md) for how
+        footage is catalogued and processed (never redistributed by this
+        project).
+
+        This project does not host footage. We only need a stable URL to
+        point at, plus enough metadata to catalogue it as a
+        `wtc4d.schema.corpus.Source`.
+
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      description: >-
+        A stable public link to the footage (archive.org, YouTube,
+        Wikimedia Commons, your own upload elsewhere, etc). If you filmed
+        it yourself and it isn't hosted anywhere public yet, say so below
+        instead and we'll follow up on hosting.
+      placeholder: "https://archive.org/details/..."
+    validations:
+      required: false
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      description: Matches `wtc4d.schema.corpus.SourceKind`.
+      options:
+        - video
+        - tv_broadcast
+        - photo
+        - aerial
+        - lidar
+        - document
+        - other
+    validations:
+      required: true
+
+  - type: input
+    id: archive
+    attributes:
+      label: Archive / host
+      description: "e.g. archive.org, youtube, wikimedia, nist_foia, flickr, noaa, usgs, other"
+      placeholder: archive.org
+    validations:
+      required: false
+
+  - type: input
+    id: creator
+    attributes:
+      label: Creator
+      description: Photographer, broadcaster, or uploader, for attribution.
+    validations:
+      required: false
+
+  - type: input
+    id: license
+    attributes:
+      label: License (if known)
+      description: >-
+        An SPDX id (e.g. CC-BY-4.0), "public-domain", or leave blank if
+        unknown — we'll mark it `unknown` and track it per
+        `docs/licensing.md`.
+    validations:
+      required: false
+
+  - type: textarea
+    id: time-hint
+    attributes:
+      label: When was this filmed?
+      description: >-
+        As precise as you can, even approximate ("shortly after the
+        second impact", "around 10am", a specific timestamp). This
+        becomes a `time_hint` that seeds absolute-time alignment.
+    validations:
+      required: false
+
+  - type: textarea
+    id: location-hint
+    attributes:
+      label: Where was this filmed from?
+      description: >-
+        A named vantage point if known ("Brooklyn Promenade", "WABC
+        NewsCopter 7", a street corner, an apartment window facing X).
+        This becomes a `location_hint`/`location_hint_text`.
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else?
+      description: >-
+        Anything relevant to cataloguing this correctly — known gaps,
+        whether it's part of a larger reel, related footage you know of,
+        etc.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Acknowledgements
+      options:
+        - label: >-
+            I understand this project catalogues and processes footage
+            but does not redistribute it (see `docs/licensing.md`).
+          required: true
+        - label: >-
+            I understand footage depicting identifiable individuals,
+            people falling or jumping, or human remains is never rendered
+            by this project, even if it's used to derive camera geometry
+            or timing (see `docs/ethics.md`).
+          required: true
