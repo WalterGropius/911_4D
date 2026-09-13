@@ -1,0 +1,74 @@
+# ---------------------------------------------------------------------------
+# Explicit corrections applied when building the 2001-09-11 city model.
+#
+# The automatic rules in wtc4d/geo/city.py already:
+#   * drop every NYC DoITT footprint with construction_year > 2001;
+#   * re-add every BUILDING_HISTORIC footprint demolished after 2001 (this is
+#     what brings back 130 Liberty St, Fiterman Hall and their neighbours);
+#   * drop OSM footprints whose `start_date` is after 2001.
+#
+# This file handles what those rules cannot see: records with a missing or
+# wrong year, buildings that changed shape, and structures that no dataset
+# has at all.  Every entry carries a reason.
+# ---------------------------------------------------------------------------
+
+# DoITT `bin` values to remove regardless of construction_year (post-2001
+# construction whose year is 0/unknown, or which the dataset backdates to the
+# predecessor building on the same lot).
+drop_bins:
+  - "1088797"   # 4 World Trade Center (2013), WTC site
+  - "1088795"   # One World Trade Center (2014), WTC site
+  - "1090954"   # 3 World Trade Center (2018), WTC site
+  - "1089308"   # WTC site post-2001 structure (Liberty Park / VSC)
+  - "1089309"   # WTC site post-2001 structure
+  - "1088798"   # WTC site post-2001 structure
+  - "1088469"   # WTC site post-2001 structure
+  - "1087554"   # WTC site construction-era structure
+  - "1086510"   # 7 World Trade Center (2006)
+  - "1090246"   # post-2001 structure, WTC vicinity
+  - "1089707"   # post-2001 structure, WTC vicinity
+  - "1086556"   # 200 West Street (Goldman Sachs, 2009)
+
+# DoITT `doitt_id` values to remove (same idea, when the bin is reused).
+drop_doitt_ids: []
+
+# DoITT `bin` values to keep even though construction_year > 2001 (the geometry
+# is right but the year refers to a later alteration).
+keep_bins: []
+
+# Per-record attribute overrides, keyed by `bin` (or `doitt_id`).
+overrides:
+  "1001059":
+    name: "130 Liberty Street (Deutsche Bank / Bankers Trust Plaza)"
+    # BUILDING_HISTORIC records height_roof = 193 ft, which is the stump left
+    # partway through the 2007-2011 deconstruction, not the 2001 building.
+    height_roof_ft: 525.0   # 39 storeys, 525 ft (Bankers Trust Plaza, 1974)
+    sigma_m: 4.0
+
+# Structures no dataset covers, added explicitly.  `footprint_lonlat` is
+# [[lon, lat], ...]; `footprint_uv` is the WTC site frame (see
+# data/geo/wtc_complex.yaml).  `base_elev_m` and `height_m` are metres.
+add:
+  - id: ST_NICHOLAS
+    name: "St Nicholas Greek Orthodox Church, 155 Cedar Street"
+    footprint_lonlat:
+      - [-74.013797, 40.708585]
+      - [-74.013663, 40.708608]
+      - [-74.013697, 40.708687]
+      - [-74.013831, 40.708664]
+    base_elev_m: 4.0
+    height_m: 10.0
+    year: 1832
+    sigma_m: 8.0
+    approx: true
+    source: "Four-storey townhouse church at 155 Cedar St, destroyed 2001-09-11; footprint reconstructed on the lot"
+
+  - id: WTC_PED_BRIDGE_LIBERTY
+    name: "Liberty Street pedestrian bridge over West Street"
+    footprint_uv: [[-170.0, -66.0], [-132.0, -66.0], [-132.0, -58.0], [-170.0, -58.0]]
+    base_elev_m: 12.0
+    height_m: 6.0
+    year: 1985
+    sigma_m: 12.0
+    approx: true
+    source: "Enclosed footbridge linking the WTC to the World Financial Center; geometry reconstructed"

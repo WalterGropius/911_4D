@@ -1,0 +1,145 @@
+# ---------------------------------------------------------------------------
+# World Trade Center complex, as it stood on 2001-09-11.
+#
+# Footprints are given in the WTC **site frame** (u, v) in metres:
+#   u = distance along azimuth 119.118 deg (roughly ESE, toward Church Street)
+#   v = distance along azimuth  29.118 deg (roughly NNE, toward Vesey Street)
+#   origin  = wtc4d.world.WORLD_ORIGIN
+# The grid azimuth 29.118 deg is the mean bearing of the four sides of the two
+# September 11 Memorial reflecting pools (OpenStreetMap ways 697722178 /
+# 697722181), which are laid out on the original tower footprints; the four
+# sides fit a square to within 0.2 m and their bearings agree to 0.19 deg.
+# Sign convention matches wtc4d.geo.wtc.site_uv_to_enu().
+#
+# Elevations (`base_elev_m`, `*_height_m`) are metres above MSL/NAVD88.
+#
+# EVERY number below carries a source.  Values marked `approx: true` are
+# geometric reconstructions, not survey data; see `sigma_m`.
+# ---------------------------------------------------------------------------
+site:
+  grid_azimuth_deg: 29.118
+  # Sources for the datum chain, see wtc4d/geo/README.md "Vertical datum":
+  #   Port Authority "WTC datum" = MSL + 300.0 ft.  Austin J. Tobin Plaza was
+  #   at WTC-datum el. 327 ft -> 27 ft -> 8.23 m above MSL.
+  #   Cross-check 1: Church Street at WTC-datum el. 321 ft -> 21 ft, matching
+  #     NYC DoITT BUILDING.ground_elevation = 21 ft on the Church St frontage.
+  #   Cross-check 2: the 2011 memorial plaza at WTC-datum el. 313 ft -> 3.96 m,
+  #     matching a USGS 3DEP sample of 4.34 m at the North Pool.
+  plaza_elevation_m: 8.23
+  plaza_elevation_sigma_m: 1.0
+  # Superblock bounded by West St (W), Vesey St (N), Church St (E), Liberty St
+  # (S).  Extent measured from OSM street centrelines and the extent of NYC
+  # DoITT footprints on tax block 1-00058 (the WTC site).
+  superblock_uv: [[-130.0, -62.0], [174.0, -62.0], [174.0, 208.0], [-130.0, 208.0]]
+
+buildings:
+
+  - id: WTC1
+    name: One World Trade Center (North Tower)
+    kind: tower
+    shape: square
+    # Centroid of the Memorial North Pool (OSM way 697722178), which occupies
+    # the North Tower footprint.  OSM vs NYC DoITT planimetrics in this block:
+    # mean offset 0.8 m E / 0.0 m N over 31 matched buildings, per-building
+    # scatter 3 m -> sigma 2.5 m on the centre.
+    center_uv: [-48.95, 92.12]
+    side_m: 63.14        # 207 ft 2 in square: NIST NCSTAR 1-1 sec. 2.2
+    base_elev_m: 8.23    # plaza
+    roof_height_m: 417.0 # 1,368 ft above plaza (NIST NCSTAR 1; Wikipedia WTC)
+    top_height_m: 526.3  # 1,727 ft, rooftop TV mast tip (sources give 1,727-1,728 ft)
+    floors: 110
+    mast:
+      radius_m: 1.3      # approximate: mast ~8.5 ft across at the base
+      approx: true
+    sigma_m: 2.5
+    approx: false
+    source: "OSM memorial North Pool; NIST NCSTAR 1-1"
+
+  - id: WTC2
+    name: Two World Trade Center (South Tower)
+    kind: tower
+    shape: square
+    center_uv: [18.03, -11.62]   # Memorial South Pool centroid (OSM way 697722181)
+    side_m: 63.14
+    base_elev_m: 8.23
+    roof_height_m: 415.1  # 1,362 ft above plaza
+    top_height_m: 415.1   # no mast; observation deck roof
+    floors: 110
+    sigma_m: 2.5
+    approx: false
+    source: "OSM memorial South Pool; NIST NCSTAR 1-1"
+
+  - id: WTC3
+    name: 3 World Trade Center (Marriott World Trade Center)
+    kind: block
+    shape: polygon
+    footprint_uv: [[-128.0, -60.0], [-38.0, -60.0], [-38.0, -2.0], [-128.0, -2.0]]
+    base_elev_m: 8.23
+    roof_height_m: 76.2   # 250 ft, 22 storeys (Wikipedia, World Trade Center 1973-2001)
+    floors: 22
+    sigma_m: 10.0
+    approx: true
+    source: "Height: Wikipedia/WTC complex. Footprint: reconstructed inside the superblock (SW corner, fronting West St and Liberty St)."
+
+  - id: WTC4
+    name: 4 World Trade Center (South Plaza Building)
+    kind: block
+    shape: polygon
+    footprint_uv: [[80.0, -60.0], [174.0, -60.0], [174.0, 20.0], [80.0, 20.0]]
+    base_elev_m: 8.23
+    roof_height_m: 36.6   # 120 ft, 9 storeys
+    floors: 9
+    sigma_m: 12.0
+    approx: true
+    source: "Height: Wikipedia/WTC complex. Footprint: reconstructed rectangle at the SE corner of the superblock (the real building was L-shaped)."
+
+  - id: WTC5
+    name: 5 World Trade Center (North Plaza Building)
+    kind: block
+    shape: polygon
+    footprint_uv: [[95.0, 110.0], [174.0, 110.0], [174.0, 206.0], [95.0, 206.0]]
+    base_elev_m: 8.23
+    roof_height_m: 36.6   # 120 ft, 9 storeys
+    floors: 9
+    sigma_m: 12.0
+    approx: true
+    source: "Height: Wikipedia/WTC complex. Footprint: reconstructed rectangle at the NE corner (the real building was L-shaped)."
+
+  - id: WTC6
+    name: 6 World Trade Center (US Customs House)
+    kind: block
+    shape: polygon
+    footprint_uv: [[-128.0, 128.0], [-20.0, 128.0], [-20.0, 206.0], [-128.0, 206.0]]
+    base_elev_m: 8.23
+    roof_height_m: 33.5   # 110 ft, 8 storeys
+    floors: 8
+    sigma_m: 12.0
+    approx: true
+    source: "Height: Wikipedia/WTC complex. Footprint: reconstructed rectangle at the NW corner (the real building was U-shaped)."
+
+  - id: WTC7
+    name: 7 World Trade Center (original, 1987)
+    kind: block
+    shape: polygon
+    # Irregular trapezoid: north face ~100 m (329 ft), south face ~75 m
+    # (247 ft), depth ~44 m (144 ft) -- NIST NCSTAR 1A sec. 1.1.  Anchored with
+    # the east face on the West Broadway building line (the original building
+    # "bordered West Broadway on the east") and the south face on the north
+    # building line of Vesey Street; both lines taken from OSM centrelines.
+    footprint_uv: [[31.0, 231.0], [-44.0, 231.0], [-58.0, 275.0], [42.0, 275.0]]
+    base_elev_m: 5.5      # street grade north of Vesey St (NYC DoITT ground_elevation ~18 ft)
+    roof_height_m: 185.9  # 610 ft, 47 storeys (NIST NCSTAR 1A)
+    floors: 47
+    sigma_m: 8.0
+    approx: true
+    source: "Dimensions: NIST NCSTAR 1A. Placement: OSM street centrelines (Vesey St, West Broadway)."
+
+  - id: WTC_PLAZA
+    name: Austin J. Tobin Plaza (superblock slab)
+    kind: slab
+    shape: superblock
+    base_elev_m: 5.0      # slab bottom, roughly street grade
+    roof_height_m: 3.23   # top at 8.23 m = plaza level
+    sigma_m: 5.0
+    approx: true
+    source: "Derived: superblock extent (OSM streets + NYC DoITT block 1-00058) extruded to the plaza datum."

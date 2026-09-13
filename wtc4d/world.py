@@ -12,13 +12,21 @@ Camera convention
 OpenCV / COLMAP pinhole: camera +X right, +Y down, +Z forward.  Poses are
 stored **camera-to-world** (``c2w``), 4x4 row-major.  See ``wtc4d.schema``.
 
+Vertical datum
+--------------
+``Z`` (and every ``LatLonAlt.alt_m`` in this module) is **metres above
+MSL/NAVD88**, which at The Battery agree to about 0.1 m.  Ground in Lower
+Manhattan is roughly +2 to +10 m; the Austin J. Tobin Plaza (the WTC plaza,
+the datum for the tower heights below) was at +8.23 m.
+
 Accuracy notes
 --------------
-Values marked ``approx`` are placeholders good to tens of metres, taken
-from public sources (Wikipedia, NYC open data, memorial footprints).  The
-``geo`` workstream is responsible for replacing them with surveyed values
-(NIST structural drawings, NYC DoITT planimetrics, memorial pool footprints,
-which coincide with the original tower footprints).
+The WTC numbers below were verified by the ``geo`` workstream against the
+September 11 Memorial pool footprints (which are laid out on the original
+tower footprints), NIST NCSTAR 1 / 1A and NYC DoITT planimetrics; see
+``wtc4d/geo/README.md`` for the accuracy budget.  ``LANDMARKS`` here remains a
+small bootstrap list -- the full registry is ``data/geo/landmarks.json``, and
+``wtc4d.geo.load_landmarks()`` merges the two (JSON wins on ``id``).
 """
 
 from __future__ import annotations
@@ -36,8 +44,13 @@ _F = 1.0 / 298.257223563
 _E2 = _F * (2.0 - _F)
 
 WORLD_ORIGIN = LatLonAlt(lat=40.71120, lon=-74.01320, alt_m=0.0)
-"""ENU origin: between the towers, at approximately mean sea level.  Plaza
-level was roughly +3..+5 m above MSL; the geo workstream sets the datum."""
+"""ENU origin, at mean sea level (MSL/NAVD88), between the two towers.
+
+Verified by the geo workstream: the exact midpoint of the two tower centres is
+40.711584 N, 74.013128 W, i.e. 46.1 m NNE of this origin.  The origin is kept
+unchanged because its only job is to be *fixed* -- moving it would shift every
+ENU coordinate produced by the other workstreams for no accuracy gain.  The
+plaza datum is :data:`wtc4d.geo.wtc.PLAZA_ELEVATION_M` = 8.23 m."""
 
 
 def geodetic_to_ecef(p: LatLonAlt) -> np.ndarray:
@@ -99,6 +112,9 @@ class TowerSpec(BaseModel):
     floors: int
     impact_floors: tuple[int, int] | None = None
     notes: str = ""
+    center_sigma_m: float = 3.0  # 1-sigma horizontal uncertainty of ``center``
+    height_sigma_m: float = 1.0  # 1-sigma uncertainty of the height values
+    source: str = ""  # provenance of the numbers above
 
     def enu_center(self) -> np.ndarray:
         return latlon_to_enu(self.center)
@@ -115,33 +131,51 @@ class TowerSpec(BaseModel):
         return np.vstack([bottom, top])
 
 
-# Both towers: 207 ft (63.1 m) square, 110 storeys.  Centre coordinates are
-# approx (memorial pools mark the footprints).  Faces were aligned with the
-# WTC superblock, which is rotated slightly from true north; ``rotation_deg``
-# is approx and MUST be verified by the geo workstream.
+# Tower geometry, verified by the geo workstream (2026):
+#   * Footprint side 207 ft 2 in = 63.14 m square -- NIST NCSTAR 1-1 sec. 2.2.
+#   * Centres = the centroids of the two September 11 Memorial reflecting
+#     pools (OpenStreetMap ways 697722178 / 697722181), which are laid out on
+#     the original tower footprints.  Their eight sides fit an axis-aligned
+#     square in the site frame to within 0.2 m.  OSM agrees with NYC DoITT
+#     planimetrics in this block to 0.8 m mean / 3 m scatter over 31 matched
+#     buildings, hence center_sigma_m = 2.5.
+#   * rotation_deg = -29.118: the pool sides run at azimuth 29.118 deg and
+#     119.118 deg (the Manhattan/WTC grid).  A square has 90 deg symmetry, so
+#     +60.882 describes the same footprint.
+#   * alt_m = 8.23 m: Austin J. Tobin Plaza above MSL, the datum for the roof
+#     and antenna heights (Port Authority WTC datum el. 327 ft, WTC datum =
+#     MSL + 300 ft; cross-checked against NYC DoITT ground_elevation and a
+#     USGS 3DEP sample -- see wtc4d/geo/README.md).
+#   * Roof heights 1,368 ft / 1,362 ft and impact floors: NIST NCSTAR 1.
 WTC1 = TowerSpec(
     id="WTC1",
     name="One World Trade Center (North Tower)",
-    center=LatLonAlt(lat=40.71195, lon=-74.01338, alt_m=0.0),
-    footprint_m=63.1,
+    center=LatLonAlt(lat=40.7121392, lon=-74.0131756, alt_m=8.23),
+    footprint_m=63.14,
     roof_height_m=417.0,
-    top_height_m=526.3,  # rooftop antenna
-    rotation_deg=0.0,  # approx
+    top_height_m=526.3,  # 1,727 ft rooftop TV mast tip (sources give 1,727-1,728 ft)
+    rotation_deg=-29.118,
     floors=110,
     impact_floors=(93, 99),
-    notes="Approx centre; verify against memorial North Pool footprint.",
+    center_sigma_m=2.5,
+    height_sigma_m=1.0,
+    source="OSM memorial North Pool (way 697722178); NIST NCSTAR 1 / 1-1",
+    notes="Heights are above the plaza (center.alt_m). Roof 425.23 m above MSL.",
 )
 WTC2 = TowerSpec(
     id="WTC2",
     name="Two World Trade Center (South Tower)",
-    center=LatLonAlt(lat=40.71055, lon=-74.01285, alt_m=0.0),
-    footprint_m=63.1,
+    center=LatLonAlt(lat=40.7110296, lon=-74.0130805, alt_m=8.23),
+    footprint_m=63.14,
     roof_height_m=415.1,
     top_height_m=415.1,  # observation deck roof, no antenna
-    rotation_deg=0.0,  # approx
+    rotation_deg=-29.118,
     floors=110,
     impact_floors=(77, 85),
-    notes="Approx centre; verify against memorial South Pool footprint.",
+    center_sigma_m=2.5,
+    height_sigma_m=1.0,
+    source="OSM memorial South Pool (way 697722181); NIST NCSTAR 1 / 1-1",
+    notes="Heights are above the plaza (center.alt_m). Roof 423.33 m above MSL.",
 )
 TOWERS: list[TowerSpec] = [WTC1, WTC2]
 
@@ -151,8 +185,10 @@ class Landmark(BaseModel):
     """A fixed, identifiable 3D point useful for camera registration.
 
     ``point`` is the geodetic location of the identifiable feature itself
-    (e.g. a spire tip), not the building footprint.  ``height_m`` is the
-    feature height above local ground for convenience.
+    (e.g. a spire tip), not the building footprint.  ``point.alt_m`` is metres
+    above MSL/NAVD88 -- the same datum as the world frame's ``Z`` -- so
+    :meth:`enu` is directly usable as a PnP object point.  ``height_m`` is the
+    feature height above the *local ground*, and is metadata only.
     """
 
     id: str
@@ -163,94 +199,102 @@ class Landmark(BaseModel):
     existed_on_2001_09_11: bool = True
     approx: bool = True
     notes: str = ""
+    sigma_m: float = 10.0  # 1-sigma 3D position uncertainty, metres
+    source: str = ""  # where the position and height came from
 
     def enu(self) -> np.ndarray:
         return latlon_to_enu(self.point)
 
 
 def _lm(
-    id: str, name: str, lat: float, lon: float, h: float, kind: str = "building_top", **kw
+    id: str,
+    name: str,
+    lat: float,
+    lon: float,
+    alt_m: float,
+    height_m: float,
+    kind: str = "building_top",
+    **kw,
 ) -> Landmark:
+    """``alt_m`` is metres above MSL; ``height_m`` is above local ground."""
     return Landmark(
-        id=id, name=name, point=LatLonAlt(lat=lat, lon=lon, alt_m=h), height_m=h, kind=kind, **kw
+        id=id,
+        name=name,
+        point=LatLonAlt(lat=lat, lon=lon, alt_m=alt_m),
+        height_m=height_m,
+        kind=kind,
+        **kw,
     )
 
 
-# All approx; the geo workstream verifies and extends this registry (aim for
-# 50+ landmarks with <5 m accuracy, including Jersey City / Brooklyn / Midtown).
+# Small bootstrap list, kept for backward compatibility; the full 50+ entry
+# registry verified by the geo workstream is data/geo/landmarks.json --
+# use wtc4d.geo.load_landmarks() (JSON entries win on id).
 LANDMARKS: list[Landmark] = [
-    _lm("wtc1_roof_ne", "WTC1 roof, NE corner", 40.71223, -74.01300, 417.0, "corner"),
-    _lm("wtc1_antenna", "WTC1 antenna tip", 40.71195, -74.01338, 526.3, "spire"),
-    _lm("wtc2_roof_ne", "WTC2 roof, NE corner", 40.71083, -74.01247, 415.1, "corner"),
-    _lm("wtc7_roof", "7 WTC (original, 1987) roof", 40.71360, -74.01200, 174.0),
     _lm(
-        "wfc1_roof",
-        "1 World Financial Center (200 Liberty St) pyramid top",
-        40.71190,
-        -74.01550,
-        175.0,
+        "wtc1_antenna",
+        "WTC1 rooftop mast tip",
+        40.7121391,
+        -74.0131756,
+        534.53,
+        108.3,
+        "spire",
+        sigma_m=3.0,
+        source="wtc4d.geo.wtc (site frame, memorial North Pool)",
     ),
     _lm(
-        "wfc2_roof",
-        "2 World Financial Center (225 Liberty St) dome top",
-        40.71310,
-        -74.01550,
-        197.0,
+        "wtc1_roof_ne",
+        "WTC1 roof, NE corner",
+        40.7125258,
+        -74.0133202,
+        425.23,
+        417.0,
+        "corner",
+        sigma_m=3.5,
+        source="wtc4d.geo.wtc (site frame, memorial North Pool)",
     ),
     _lm(
-        "wfc3_roof",
-        "3 World Financial Center (200 Vesey St) pyramid top",
-        40.71390,
-        -74.01520,
-        225.0,
-    ),
-    _lm("wfc4_roof", "4 World Financial Center (250 Vesey St) roof", 40.71470, -74.01640, 150.0),
-    _lm("verizon_roof", "Verizon Building (140 West St) roof", 40.71400, -74.01300, 152.0),
-    _lm("millenium_hilton_roof", "Millenium Hilton roof", 40.71130, -74.01070, 175.0),
-    _lm("one_liberty_plaza_roof", "One Liberty Plaza roof", 40.70950, -74.01110, 226.0),
-    _lm(
-        "deutsche_bank_roof",
-        "Deutsche Bank Building (130 Liberty St) roof",
-        40.70980,
-        -74.01340,
-        158.0,
-    ),
-    _lm("woolworth_spire", "Woolworth Building spire", 40.71237, -74.00814, 241.0, "spire"),
-    _lm("forty_wall_spire", "40 Wall Street spire", 40.70730, -74.00960, 282.0, "spire"),
-    _lm(
-        "brooklyn_bridge_manhattan_tower",
-        "Brooklyn Bridge, Manhattan tower top",
-        40.70707,
-        -73.99870,
-        84.0,
-        "bridge_tower",
+        "wtc2_roof_ne",
+        "WTC2 roof, NE corner",
+        40.7114163,
+        -74.0132251,
+        423.33,
+        415.1,
+        "corner",
+        sigma_m=3.5,
+        source="wtc4d.geo.wtc (site frame, memorial South Pool)",
     ),
     _lm(
-        "brooklyn_bridge_brooklyn_tower",
-        "Brooklyn Bridge, Brooklyn tower top",
-        40.70430,
-        -73.99340,
-        84.0,
-        "bridge_tower",
+        "statue_of_liberty_torch",
+        "Statue of Liberty torch",
+        40.689247,
+        -74.044502,
+        92.99,
+        92.99,
+        "statue",
+        sigma_m=3.0,
+        source="NPS: 305 ft 1 in from foundation base to torch",
     ),
-    _lm("statue_of_liberty_torch", "Statue of Liberty torch", 40.68925, -74.04450, 93.0, "statue"),
     _lm(
         "empire_state_spire",
         "Empire State Building antenna tip",
-        40.74844,
-        -73.98565,
-        443.0,
+        40.748441,
+        -73.985664,
+        458.0,
+        443.2,
         "spire",
+        sigma_m=4.0,
+        source="1,454 ft to the antenna tip above ~14.8 m ground",
     ),
-    _lm("chrysler_spire", "Chrysler Building spire", 40.75174, -73.97557, 319.0, "spire"),
-    _lm("101_hudson_jc_roof", "101 Hudson Street, Jersey City roof", 40.71760, -74.03250, 167.0),
     _lm(
         "goldman_30_hudson_jc",
         "30 Hudson Street, Jersey City (built 2004; must NOT appear)",
-        40.71400,
-        -74.03360,
+        40.7125,
+        -74.0325,
+        241.0,
         238.0,
         existed_on_2001_09_11=False,
+        source="Completed 2004",
     ),
 ]
 LANDMARKS_BY_ID: dict[str, Landmark] = {lm.id: lm for lm in LANDMARKS}

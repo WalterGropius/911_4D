@@ -1,0 +1,1463 @@
+{
+ "$schema": "wtc4d.world.Landmark",
+ "note": "Landmark registry for camera registration. point.alt_m is metres above MSL/NAVD88; height_m is the feature height above local ground; sigma_m is a 1-sigma 3D position uncertainty in metres.",
+ "count": 91,
+ "landmarks": [
+  {
+   "id": "101_hudson_jc_roof",
+   "name": "101 Hudson Street, Jersey City, roof",
+   "point": {
+    "lat": 40.717695,
+    "lon": -74.033327,
+    "alt_m": 170.0
+   },
+   "height_m": 167.0,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "",
+   "sigma_m": 8.0,
+   "source": "548 ft (167 m), completed 1992; ground ~3 m (USGS 3DEP)"
+  },
+  {
+   "id": "brooklyn_bridge_brooklyn_tower",
+   "name": "Brooklyn Bridge, Brooklyn tower top",
+   "point": {
+    "lat": 40.70439,
+    "lon": -73.99338,
+    "alt_m": 84.3
+   },
+   "height_m": 84.3,
+   "kind": "bridge_tower",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "",
+   "sigma_m": 3.0,
+   "source": "Brooklyn Bridge towers rise 276 ft 6 in (84.3 m) above mean high water"
+  },
+  {
+   "id": "brooklyn_bridge_manhattan_tower",
+   "name": "Brooklyn Bridge, Manhattan tower top",
+   "point": {
+    "lat": 40.70706,
+    "lon": -73.99873,
+    "alt_m": 84.3
+   },
+   "height_m": 84.3,
+   "kind": "bridge_tower",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "",
+   "sigma_m": 3.0,
+   "source": "Brooklyn Bridge towers rise 276 ft 6 in (84.3 m) above mean high water"
+  },
+  {
+   "id": "chrysler_spire",
+   "name": "Chrysler Building, spire tip",
+   "point": {
+    "lat": 40.751652,
+    "lon": -73.975311,
+    "alt_m": 333.0
+   },
+   "height_m": 318.9,
+   "kind": "spire",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "",
+   "sigma_m": 4.0,
+   "source": "1,046 ft (318.9 m) to the spire above ~14 m ground"
+  },
+  {
+   "id": "citicorp_roof",
+   "name": "Citigroup Center (601 Lexington Ave), top of the sloped roof",
+   "point": {
+    "lat": 40.758611,
+    "lon": -73.970556,
+    "alt_m": 294.0
+   },
+   "height_m": 279.0,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "",
+   "sigma_m": 8.0,
+   "source": "915 ft (279 m) above ~15 m ground; the 45-degree crown is unmistakable in skyline shots"
+  },
+  {
+   "id": "colgate_clock_jc",
+   "name": "Colgate Clock, Jersey City (centre of the dial)",
+   "point": {
+    "lat": 40.712478,
+    "lon": -74.035289,
+    "alt_m": 15.0
+   },
+   "height_m": 15.0,
+   "kind": "other",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "",
+   "sigma_m": 6.0,
+   "source": "OSM node; 50 ft octagonal dial on the Exchange Place waterfront"
+  },
+  {
+   "id": "empire_state_roof",
+   "name": "Empire State Building, 102nd floor observatory roof",
+   "point": {
+    "lat": 40.748441,
+    "lon": -73.985664,
+    "alt_m": 396.0
+   },
+   "height_m": 381.0,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "",
+   "sigma_m": 4.0,
+   "source": "1,250 ft (381 m) architectural roof above ~14.8 m ground"
+  },
+  {
+   "id": "empire_state_spire",
+   "name": "Empire State Building, antenna tip",
+   "point": {
+    "lat": 40.748441,
+    "lon": -73.985664,
+    "alt_m": 458.0
+   },
+   "height_m": 443.2,
+   "kind": "spire",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "",
+   "sigma_m": 4.0,
+   "source": "1,454 ft (443.2 m) to the antenna tip above a ground elevation of ~14.8 m"
+  },
+  {
+   "id": "goldman_30_hudson_jc",
+   "name": "30 Hudson Street, Jersey City (Goldman Sachs Tower)",
+   "point": {
+    "lat": 40.7125,
+    "lon": -74.0325,
+    "alt_m": 241.0
+   },
+   "height_m": 238.0,
+   "kind": "building_top",
+   "existed_on_2001_09_11": false,
+   "approx": true,
+   "notes": "",
+   "sigma_m": 10.0,
+   "source": "Completed 2004 -- MUST NOT appear in the 2001 scene"
+  },
+  {
+   "id": "manhattan_bridge_brooklyn_tower",
+   "name": "Manhattan Bridge, Brooklyn tower top",
+   "point": {
+    "lat": 40.70418,
+    "lon": -73.98708,
+    "alt_m": 102.0
+   },
+   "height_m": 102.0,
+   "kind": "bridge_tower",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "",
+   "sigma_m": 6.0,
+   "source": "Manhattan Bridge towers ~335 ft (102 m) above water; position from OSM"
+  },
+  {
+   "id": "manhattan_bridge_manhattan_tower",
+   "name": "Manhattan Bridge, Manhattan tower top",
+   "point": {
+    "lat": 40.70866,
+    "lon": -73.99195,
+    "alt_m": 102.0
+   },
+   "height_m": 102.0,
+   "kind": "bridge_tower",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "",
+   "sigma_m": 6.0,
+   "source": "Manhattan Bridge towers ~335 ft (102 m) above water; position from OSM"
+  },
+  {
+   "id": "metlife_roof",
+   "name": "MetLife Building (200 Park Ave) roof",
+   "point": {
+    "lat": 40.754444,
+    "lon": -73.976389,
+    "alt_m": 261.0
+   },
+   "height_m": 246.3,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "",
+   "sigma_m": 6.0,
+   "source": "808 ft (246.3 m) roof above ~15 m ground"
+  },
+  {
+   "id": "newport_tower_jc_roof",
+   "name": "Newport Tower, Jersey City, roof",
+   "point": {
+    "lat": 40.726944,
+    "lon": -74.035,
+    "alt_m": 155.0
+   },
+   "height_m": 152.4,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "",
+   "sigma_m": 8.0,
+   "source": "500 ft (152.4 m), completed 1990; ground ~3 m"
+  },
+  {
+   "id": "one_liberty_plaza_roof",
+   "name": "One Liberty Plaza roof",
+   "point": {
+    "lat": 40.7097489,
+    "lon": -74.0108715,
+    "alt_m": 232.26
+   },
+   "height_m": 223.11,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1001068; built 1973",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "one_wtc_spire",
+   "name": "One World Trade Center (2014) spire tip",
+   "point": {
+    "lat": 40.713,
+    "lon": -74.0134,
+    "alt_m": 546.2
+   },
+   "height_m": 541.3,
+   "kind": "spire",
+   "existed_on_2001_09_11": false,
+   "approx": true,
+   "notes": "",
+   "sigma_m": 10.0,
+   "source": "Completed 2014 -- MUST NOT appear in the 2001 scene"
+  },
+  {
+   "id": "roof_10_east_40_street",
+   "name": "10 East 40 Street roof",
+   "point": {
+    "lat": 40.7515918,
+    "lon": -73.9811747,
+    "alt_m": 212.97
+   },
+   "height_m": 188.59,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1017601; built 1928",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_111_washington_street",
+   "name": "111 Washington Street roof",
+   "point": {
+    "lat": 40.7087626,
+    "lon": -74.0138847,
+    "alt_m": 241.4
+   },
+   "height_m": 239.27,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1091905; built None",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_1177_avenue_of_the_americas",
+   "name": "1177 Avenue Of The Americas roof",
+   "point": {
+    "lat": 40.7572633,
+    "lon": -73.982949,
+    "alt_m": 219.52
+   },
+   "height_m": 202.45,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1076173; built 1988",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_1221_avenue_of_the_americas",
+   "name": "1221 Avenue Of The Americas roof",
+   "point": {
+    "lat": 40.7595182,
+    "lon": -73.9822649,
+    "alt_m": 222.05
+   },
+   "height_m": 205.28,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1022693; built 1971",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_1345_avenue_of_the_americas",
+   "name": "1345 Avenue Of The Americas roof",
+   "point": {
+    "lat": 40.7630248,
+    "lon": -73.9791466,
+    "alt_m": 216.22
+   },
+   "height_m": 196.11,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1083719; built 1968",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_140_broadway",
+   "name": "140 Broadway roof",
+   "point": {
+    "lat": 40.7086476,
+    "lon": -74.0100178,
+    "alt_m": 217.55
+   },
+   "height_m": 206.88,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1001027; built 1968",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_1472_broadway",
+   "name": "1472 Broadway roof",
+   "point": {
+    "lat": 40.756078,
+    "lon": -73.9859827,
+    "alt_m": 241.71
+   },
+   "height_m": 224.64,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1085682; built 1998",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_1515_broadway",
+   "name": "1515 Broadway roof",
+   "point": {
+    "lat": 40.7579854,
+    "lon": -73.9865797,
+    "alt_m": 226.98
+   },
+   "height_m": 213.57,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1024714; built 1970",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_152_west_57_street",
+   "name": "152 West 57 Street roof",
+   "point": {
+    "lat": 40.7647271,
+    "lon": -73.9796786,
+    "alt_m": 253.11
+   },
+   "height_m": 229.64,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1084455; built 1988",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_1631_broadway",
+   "name": "1631 Broadway roof",
+   "point": {
+    "lat": 40.7621718,
+    "lon": -73.9848676,
+    "alt_m": 221.7
+   },
+   "height_m": 202.8,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1024812; built 1972",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_200_vesey_street",
+   "name": "200 Vesey Street roof",
+   "point": {
+    "lat": 40.7136073,
+    "lon": -74.0147511,
+    "alt_m": 229.37
+   },
+   "height_m": 225.41,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1000059; built 1986",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_242_west_53_street",
+   "name": "242 West 53 Street roof",
+   "point": {
+    "lat": 40.7635205,
+    "lon": -73.9841622,
+    "alt_m": 246.28
+   },
+   "height_m": 225.86,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1090495; built 1922",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_250_west_34_street",
+   "name": "250 West 34 Street roof",
+   "point": {
+    "lat": 40.7512554,
+    "lon": -73.9923732,
+    "alt_m": 233.02
+   },
+   "height_m": 222.05,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1014387; built 1972",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_28_liberty_street",
+   "name": "28 Liberty Street roof",
+   "point": {
+    "lat": 40.7078288,
+    "lon": -74.0088991,
+    "alt_m": 257.95
+   },
+   "height_m": 250.03,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1001021; built 1964",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_338_5_avenue",
+   "name": "338 5 Avenue roof",
+   "point": {
+    "lat": 40.7485562,
+    "lon": -73.9859804,
+    "alt_m": 392.82
+   },
+   "height_m": 377.58,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1015862; built 1931",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_383_madison_avenue",
+   "name": "383 Madison Avenue roof",
+   "point": {
+    "lat": 40.7554144,
+    "lon": -73.9766677,
+    "alt_m": 239.35
+   },
+   "height_m": 221.06,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1035404; built 1999",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_395_lexington_avenue",
+   "name": "395 Lexington Avenue roof",
+   "point": {
+    "lat": 40.7516159,
+    "lon": -73.9753486,
+    "alt_m": 301.15
+   },
+   "height_m": 288.65,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1036156; built 1930",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_40_wall_street",
+   "name": "40 Wall Street roof",
+   "point": {
+    "lat": 40.7070789,
+    "lon": -74.0098187,
+    "alt_m": 255.43
+   },
+   "height_m": 245.98,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1001018; built 1930",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_500_5_avenue",
+   "name": "500 5 Avenue roof",
+   "point": {
+    "lat": 40.7539253,
+    "lon": -73.9812248,
+    "alt_m": 235.54
+   },
+   "height_m": 214.81,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1034199; built 1931",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_60_east_42_street",
+   "name": "60 East 42 Street roof",
+   "point": {
+    "lat": 40.7521529,
+    "lon": -73.9789453,
+    "alt_m": 223.77
+   },
+   "height_m": 203.95,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1035335; built 1929",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_60_wall_street",
+   "name": "60 Wall Street roof",
+   "point": {
+    "lat": 40.706272,
+    "lon": -74.0084347,
+    "alt_m": 222.91
+   },
+   "height_m": 216.2,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1001004; built 1987",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_761_5_avenue",
+   "name": "761 5 Avenue roof",
+   "point": {
+    "lat": 40.7636746,
+    "lon": -73.9723638,
+    "alt_m": 224.38
+   },
+   "height_m": 210.36,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1036082; built 1968",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_787_7_avenue",
+   "name": "787 7 Avenue roof",
+   "point": {
+    "lat": 40.7618185,
+    "lon": -73.9821805,
+    "alt_m": 246.36
+   },
+   "height_m": 227.46,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1023157; built 1985",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_9_west_57_street",
+   "name": "9 West 57 Street roof",
+   "point": {
+    "lat": 40.7638796,
+    "lon": -73.9750083,
+    "alt_m": 220.65
+   },
+   "height_m": 204.8,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1035071; built 1971",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_bin_1000830",
+   "name": "BIN 1000830 roof",
+   "point": {
+    "lat": 40.7054954,
+    "lon": -74.009527,
+    "alt_m": 225.99
+   },
+   "height_m": 220.5,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1000830; built 1929",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_bin_1001007",
+   "name": "BIN 1001007 roof",
+   "point": {
+    "lat": 40.7064473,
+    "lon": -74.007767,
+    "alt_m": 253.83
+   },
+   "height_m": 249.26,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1001007; built 1932",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_bin_1022706",
+   "name": "BIN 1022706 roof",
+   "point": {
+    "lat": 40.7601187,
+    "lon": -73.9819176,
+    "alt_m": 245.97
+   },
+   "height_m": 228.3,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1022706; built 1970",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_bin_1023728",
+   "name": "BIN 1023728 roof",
+   "point": {
+    "lat": 40.7649254,
+    "lon": -73.9775703,
+    "alt_m": 452.93
+   },
+   "height_m": 435.25,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1023728; built 1924",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_bin_1035794",
+   "name": "BIN 1035794 roof",
+   "point": {
+    "lat": 40.7622993,
+    "lon": -73.9739223,
+    "alt_m": 219.15
+   },
+   "height_m": 202.69,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1035794; built 1983",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_bin_1036474",
+   "name": "BIN 1036474 roof",
+   "point": {
+    "lat": 40.7584997,
+    "lon": -73.9702193,
+    "alt_m": 289.56
+   },
+   "height_m": 277.67,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1036474; built 1978",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_bin_1038909",
+   "name": "BIN 1038909 roof",
+   "point": {
+    "lat": 40.7525399,
+    "lon": -73.9677312,
+    "alt_m": 269.14
+   },
+   "height_m": 261.82,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1038909; built 2000",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_bin_1076177",
+   "name": "BIN 1076177 roof",
+   "point": {
+    "lat": 40.7641423,
+    "lon": -73.979794,
+    "alt_m": 256.34
+   },
+   "height_m": 233.48,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1076177; built 1987",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_bin_1076193",
+   "name": "BIN 1076193 roof",
+   "point": {
+    "lat": 40.7598643,
+    "lon": -73.9852249,
+    "alt_m": 217.02
+   },
+   "height_m": 201.17,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1076193; built 1987",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_bin_1076262",
+   "name": "BIN 1076262 roof",
+   "point": {
+    "lat": 40.7590904,
+    "lon": -73.9795624,
+    "alt_m": 273.88
+   },
+   "height_m": 254.37,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1076262; built 1937",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_bin_1077862",
+   "name": "BIN 1077862 roof",
+   "point": {
+    "lat": 40.7623204,
+    "lon": -73.9712323,
+    "alt_m": 222.5
+   },
+   "height_m": 209.09,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1077862; built 1992",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_bin_1083346",
+   "name": "BIN 1083346 roof",
+   "point": {
+    "lat": 40.7032489,
+    "lon": -74.0090331,
+    "alt_m": 218.54
+   },
+   "height_m": 216.71,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1083346; built 1973",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_bin_1085969",
+   "name": "BIN 1085969 roof",
+   "point": {
+    "lat": 40.7647895,
+    "lon": -73.9792039,
+    "alt_m": 236.83
+   },
+   "height_m": 213.97,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1085969; built 1986",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_bin_1086135",
+   "name": "BIN 1086135 roof",
+   "point": {
+    "lat": 40.7652514,
+    "lon": -73.9825022,
+    "alt_m": 219.46
+   },
+   "height_m": 196.6,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1086135; built None",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_bin_1086160",
+   "name": "BIN 1086160 roof",
+   "point": {
+    "lat": 40.7615707,
+    "lon": -73.9675637,
+    "alt_m": 260.6
+   },
+   "height_m": 245.67,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1086160; built 2001",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_bin_1087167",
+   "name": "BIN 1087167 roof",
+   "point": {
+    "lat": 40.7124625,
+    "lon": -74.0083685,
+    "alt_m": 247.8
+   },
+   "height_m": 237.74,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1087167; built 1913",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_bin_1087485",
+   "name": "BIN 1087485 roof",
+   "point": {
+    "lat": 40.7108831,
+    "lon": -74.0057103,
+    "alt_m": 270.61
+   },
+   "height_m": 262.39,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1087485; built None",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_bin_1089771",
+   "name": "BIN 1089771 roof",
+   "point": {
+    "lat": 40.7104288,
+    "lon": -73.9914713,
+    "alt_m": 246.89
+   },
+   "height_m": 243.84,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1089771; built None",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_bin_3396962",
+   "name": "BIN 3396962 roof",
+   "point": {
+    "lat": 40.6918153,
+    "lon": -73.9830063,
+    "alt_m": 241.4
+   },
+   "height_m": 227.08,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 3396962; built None",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "roof_park_avenue",
+   "name": "Park Avenue roof",
+   "point": {
+    "lat": 40.7552188,
+    "lon": -73.9741421,
+    "alt_m": 228.6
+   },
+   "height_m": 212.14,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "bin 1076268; built 1963",
+   "sigma_m": 4.0,
+   "source": "NYC DoITT BUILDING (5zhs-2jue): footprint centroid, alt = ground_elevation + height_roof"
+  },
+  {
+   "id": "st_nicholas_church",
+   "name": "St Nicholas Greek Orthodox Church (155 Cedar St) roof",
+   "point": {
+    "lat": 40.70863,
+    "lon": -74.01373,
+    "alt_m": 13.0
+   },
+   "height_m": 9.0,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "",
+   "sigma_m": 8.0,
+   "source": "Four-storey 1832 townhouse church destroyed on 2001-09-11; position from the 155 Cedar St lot"
+  },
+  {
+   "id": "statue_of_liberty_torch",
+   "name": "Statue of Liberty, torch flame",
+   "point": {
+    "lat": 40.689247,
+    "lon": -74.044502,
+    "alt_m": 92.99
+   },
+   "height_m": 92.99,
+   "kind": "statue",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "",
+   "sigma_m": 3.0,
+   "source": "NPS: 305 ft 1 in (92.99 m) from foundation base to torch; Liberty Island ground ~2 m"
+  },
+  {
+   "id": "ten_exchange_place_jc_roof",
+   "name": "10 Exchange Place, Jersey City, roof",
+   "point": {
+    "lat": 40.716389,
+    "lon": -74.032222,
+    "alt_m": 141.0
+   },
+   "height_m": 138.4,
+   "kind": "building_top",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "",
+   "sigma_m": 8.0,
+   "source": "454 ft (138.4 m), completed 1989; ground ~3 m"
+  },
+  {
+   "id": "wtc1_antenna",
+   "name": "One World Trade Center (North Tower) rooftop mast tip",
+   "point": {
+    "lat": 40.71213912804537,
+    "lon": -74.01317558988872,
+    "alt_m": 534.53
+   },
+   "height_m": 526.3,
+   "kind": "spire",
+   "existed_on_2001_09_11": true,
+   "approx": false,
+   "notes": "Mast tip, on the tower centre line",
+   "sigma_m": 3.0,
+   "source": "OSM memorial North Pool; NIST NCSTAR 1-1"
+  },
+  {
+   "id": "wtc1_roof_ne",
+   "name": "One World Trade Center (North Tower) roof corner (NE)",
+   "point": {
+    "lat": 40.712249158764735,
+    "lon": -74.01266742888198,
+    "alt_m": 425.23
+   },
+   "height_m": 417.0,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": false,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 2.9,
+   "source": "OSM memorial North Pool; NIST NCSTAR 1-1"
+  },
+  {
+   "id": "wtc1_roof_nw",
+   "name": "One World Trade Center (North Tower) roof corner (NW)",
+   "point": {
+    "lat": 40.71252581863407,
+    "lon": -74.01332017068644,
+    "alt_m": 425.23
+   },
+   "height_m": 417.0,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": false,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 2.9,
+   "source": "OSM memorial North Pool; NIST NCSTAR 1-1"
+  },
+  {
+   "id": "wtc1_roof_se",
+   "name": "One World Trade Center (North Tower) roof corner (SE)",
+   "point": {
+    "lat": 40.711752469513016,
+    "lon": -74.01303100992837,
+    "alt_m": 425.23
+   },
+   "height_m": 417.0,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": false,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 2.9,
+   "source": "OSM memorial North Pool; NIST NCSTAR 1-1"
+  },
+  {
+   "id": "wtc1_roof_sw",
+   "name": "One World Trade Center (North Tower) roof corner (SW)",
+   "point": {
+    "lat": 40.71202912735051,
+    "lon": -74.01368374838734,
+    "alt_m": 425.23
+   },
+   "height_m": 417.0,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": false,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 2.9,
+   "source": "OSM memorial North Pool; NIST NCSTAR 1-1"
+  },
+  {
+   "id": "wtc2_roof_ne",
+   "name": "Two World Trade Center (South Tower) roof corner (NE)",
+   "point": {
+    "lat": 40.7111396039053,
+    "lon": -74.01257236712658,
+    "alt_m": 423.33
+   },
+   "height_m": 415.1,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": false,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 2.9,
+   "source": "OSM memorial South Pool; NIST NCSTAR 1-1"
+  },
+  {
+   "id": "wtc2_roof_nw",
+   "name": "Two World Trade Center (South Tower) roof corner (NW)",
+   "point": {
+    "lat": 40.711416264448225,
+    "lon": -74.01322509789672,
+    "alt_m": 423.33
+   },
+   "height_m": 415.1,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": false,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 2.9,
+   "source": "OSM memorial South Pool; NIST NCSTAR 1-1"
+  },
+  {
+   "id": "wtc2_roof_se",
+   "name": "Two World Trade Center (South Tower) roof corner (SE)",
+   "point": {
+    "lat": 40.7106429147088,
+    "lon": -74.01293594295237,
+    "alt_m": 423.33
+   },
+   "height_m": 415.1,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": false,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 2.9,
+   "source": "OSM memorial South Pool; NIST NCSTAR 1-1"
+  },
+  {
+   "id": "wtc2_roof_sw",
+   "name": "Two World Trade Center (South Tower) roof corner (SW)",
+   "point": {
+    "lat": 40.71091957321985,
+    "lon": -74.01358867037716,
+    "alt_m": 423.33
+   },
+   "height_m": 415.1,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": false,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 2.9,
+   "source": "OSM memorial South Pool; NIST NCSTAR 1-1"
+  },
+  {
+   "id": "wtc3_roof_ne",
+   "name": "3 World Trade Center (Marriott World Trade Center) roof corner (NE)",
+   "point": {
+    "lat": 40.711350777907874,
+    "lon": -74.01360437675534,
+    "alt_m": 84.43
+   },
+   "height_m": 76.2,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 10.1,
+   "source": "Height: Wikipedia/WTC complex. Footprint: reconstructed inside the superblock (SW corner, fronting West St and Liberty St)."
+  },
+  {
+   "id": "wtc3_roof_nw",
+   "name": "3 World Trade Center (Marriott World Trade Center) roof corner (NW)",
+   "point": {
+    "lat": 40.71174514246366,
+    "lon": -74.0145348417498,
+    "alt_m": 84.43
+   },
+   "height_m": 76.2,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 10.1,
+   "source": "Height: Wikipedia/WTC complex. Footprint: reconstructed inside the superblock (SW corner, fronting West St and Liberty St)."
+  },
+  {
+   "id": "wtc3_roof_se",
+   "name": "3 World Trade Center (Marriott World Trade Center) roof corner (SE)",
+   "point": {
+    "lat": 40.7108944951635,
+    "lon": -74.0139383671154,
+    "alt_m": 84.43
+   },
+   "height_m": 76.2,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 10.1,
+   "source": "Height: Wikipedia/WTC complex. Footprint: reconstructed inside the superblock (SW corner, fronting West St and Liberty St)."
+  },
+  {
+   "id": "wtc3_roof_sw",
+   "name": "3 World Trade Center (Marriott World Trade Center) roof corner (SW)",
+   "point": {
+    "lat": 40.711288857058655,
+    "lon": -74.01486882772876,
+    "alt_m": 84.43
+   },
+   "height_m": 76.2,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 10.1,
+   "source": "Height: Wikipedia/WTC complex. Footprint: reconstructed inside the superblock (SW corner, fronting West St and Liberty St)."
+  },
+  {
+   "id": "wtc4_roof_ne",
+   "name": "4 World Trade Center (South Plaza Building) roof corner (NE)",
+   "point": {
+    "lat": 40.71059486690124,
+    "lon": -74.01128595518706,
+    "alt_m": 44.83
+   },
+   "height_m": 36.6,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 12.1,
+   "source": "Height: Wikipedia/WTC complex. Footprint: reconstructed rectangle at the SE corner of the superblock (the real building was L-shaped)."
+  },
+  {
+   "id": "wtc4_roof_nw",
+   "name": "4 World Trade Center (South Plaza Building) roof corner (NW)",
+   "point": {
+    "lat": 40.7110067807307,
+    "lon": -74.01225775518476,
+    "alt_m": 44.83
+   },
+   "height_m": 36.6,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 12.1,
+   "source": "Height: Wikipedia/WTC complex. Footprint: reconstructed rectangle at the SE corner of the superblock (the real building was L-shaped)."
+  },
+  {
+   "id": "wtc4_roof_se",
+   "name": "4 World Trade Center (South Plaza Building) roof corner (SE)",
+   "point": {
+    "lat": 40.70996551638212,
+    "lon": -74.01174664982756,
+    "alt_m": 44.83
+   },
+   "height_m": 36.6,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 12.1,
+   "source": "Height: Wikipedia/WTC complex. Footprint: reconstructed rectangle at the SE corner of the superblock (the real building was L-shaped)."
+  },
+  {
+   "id": "wtc4_roof_sw",
+   "name": "4 World Trade Center (South Plaza Building) roof corner (SW)",
+   "point": {
+    "lat": 40.71037742637827,
+    "lon": -74.01271844351474,
+    "alt_m": 44.83
+   },
+   "height_m": 36.6,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 12.1,
+   "source": "Height: Wikipedia/WTC complex. Footprint: reconstructed rectangle at the SE corner of the superblock (the real building was L-shaped)."
+  },
+  {
+   "id": "wtc5_roof_ne",
+   "name": "5 World Trade Center (North Plaza Building) roof corner (NE)",
+   "point": {
+    "lat": 40.71205809948493,
+    "lon": -74.01021480661629,
+    "alt_m": 44.83
+   },
+   "height_m": 36.6,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 12.1,
+   "source": "Height: Wikipedia/WTC complex. Footprint: reconstructed rectangle at the NE corner (the real building was L-shaped)."
+  },
+  {
+   "id": "wtc5_roof_nw",
+   "name": "5 World Trade Center (North Plaza Building) roof corner (NW)",
+   "point": {
+    "lat": 40.71240429042506,
+    "lon": -74.01103154367358,
+    "alt_m": 44.83
+   },
+   "height_m": 36.6,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 12.1,
+   "source": "Height: Wikipedia/WTC complex. Footprint: reconstructed rectangle at the NE corner (the real building was L-shaped)."
+  },
+  {
+   "id": "wtc5_roof_se",
+   "name": "5 World Trade Center (North Plaza Building) roof corner (SE)",
+   "point": {
+    "lat": 40.71130288395527,
+    "lon": -74.01076766334725,
+    "alt_m": 44.83
+   },
+   "height_m": 36.6,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 12.1,
+   "source": "Height: Wikipedia/WTC complex. Footprint: reconstructed rectangle at the NE corner (the real building was L-shaped)."
+  },
+  {
+   "id": "wtc5_roof_sw",
+   "name": "5 World Trade Center (North Plaza Building) roof corner (SW)",
+   "point": {
+    "lat": 40.71164907102937,
+    "lon": -74.01158439404047,
+    "alt_m": 44.83
+   },
+   "height_m": 36.6,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 12.1,
+   "source": "Height: Wikipedia/WTC complex. Footprint: reconstructed rectangle at the NE corner (the real building was L-shaped)."
+  },
+  {
+   "id": "wtc6_roof_ne",
+   "name": "6 World Trade Center (US Customs House) roof corner (NE)",
+   "point": {
+    "lat": 40.712908229728924,
+    "lon": -74.01222047935302,
+    "alt_m": 41.73
+   },
+   "height_m": 33.5,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 12.1,
+   "source": "Height: Wikipedia/WTC complex. Footprint: reconstructed rectangle at the NW corner (the real building was U-shaped)."
+  },
+  {
+   "id": "wtc6_roof_nw",
+   "name": "6 World Trade Center (US Customs House) roof corner (NW)",
+   "point": {
+    "lat": 40.71338148272528,
+    "lon": -74.01333706234703,
+    "alt_m": 41.73
+   },
+   "height_m": 33.5,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 12.1,
+   "source": "Height: Wikipedia/WTC complex. Footprint: reconstructed rectangle at the NW corner (the real building was U-shaped)."
+  },
+  {
+   "id": "wtc6_roof_se",
+   "name": "6 World Trade Center (US Customs House) roof corner (SE)",
+   "point": {
+    "lat": 40.71229460930781,
+    "lon": -74.01266966391803,
+    "alt_m": 41.73
+   },
+   "height_m": 33.5,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 12.1,
+   "source": "Height: Wikipedia/WTC complex. Footprint: reconstructed rectangle at the NW corner (the real building was U-shaped)."
+  },
+  {
+   "id": "wtc6_roof_sw",
+   "name": "6 World Trade Center (US Customs House) roof corner (SW)",
+   "point": {
+    "lat": 40.71276785801025,
+    "lon": -74.01378623984195,
+    "alt_m": 41.73
+   },
+   "height_m": 33.5,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 12.1,
+   "source": "Height: Wikipedia/WTC complex. Footprint: reconstructed rectangle at the NW corner (the real building was U-shaped)."
+  },
+  {
+   "id": "wtc7_roof_ne",
+   "name": "7 World Trade Center (original, 1987) roof corner (NE)",
+   "point": {
+    "lat": 40.713617506929985,
+    "lon": -74.01221601215157,
+    "alt_m": 191.4
+   },
+   "height_m": 185.9,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 8.1,
+   "source": "Dimensions: NIST NCSTAR 1A. Placement: OSM street centrelines (Vesey St, West Broadway)."
+  },
+  {
+   "id": "wtc7_roof_nw",
+   "name": "7 World Trade Center (original, 1987) roof corner (NW)",
+   "point": {
+    "lat": 40.71317931036884,
+    "lon": -74.01118216639131,
+    "alt_m": 191.4
+   },
+   "height_m": 185.9,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 8.1,
+   "source": "Dimensions: NIST NCSTAR 1A. Placement: OSM street centrelines (Vesey St, West Broadway)."
+  },
+  {
+   "id": "wtc7_roof_se",
+   "name": "7 World Trade Center (original, 1987) roof corner (SE)",
+   "point": {
+    "lat": 40.713210023849896,
+    "lon": -74.01232465739935,
+    "alt_m": 191.4
+   },
+   "height_m": 185.9,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 8.1,
+   "source": "Dimensions: NIST NCSTAR 1A. Placement: OSM street centrelines (Vesey St, West Broadway)."
+  },
+  {
+   "id": "wtc7_roof_sw",
+   "name": "7 World Trade Center (original, 1987) roof corner (SW)",
+   "point": {
+    "lat": 40.71288137800655,
+    "lon": -74.01154927600096,
+    "alt_m": 191.4
+   },
+   "height_m": 185.9,
+   "kind": "corner",
+   "existed_on_2001_09_11": true,
+   "approx": true,
+   "notes": "Site-frame footprint corner; see data/geo/wtc_complex.yaml",
+   "sigma_m": 8.1,
+   "source": "Dimensions: NIST NCSTAR 1A. Placement: OSM street centrelines (Vesey St, West Broadway)."
+  }
+ ]
+}
