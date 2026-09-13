@@ -1,0 +1,33 @@
+{
+  "entrypoint": "wtc4d.recon.job:run",
+  "kind": "train_dynamic",
+  "description": "WTC2 collapse window (09:58:49-09:59:59, D_collapse2): canonical gaussians + time-conditioned deformation field. Needs a GPU and, critically, per-frame times from wtc4d.sync: frames without a TimeEstimate are dropped.",
+  "data": {
+    "poses_path": "/data/cameras/poses.jsonl",
+    "frames_dir": "/data/frames",
+    "masks_dir": "/data/masks",
+    "times_path": "/data/time/time_estimates.jsonl",
+    "downscale": 1.0,
+    "holdout_every": 8
+  },
+  "init": {
+    "ply_path": "/data/splats/E2_static/E2_static.ply",
+    "mesh_points": 300000,
+    "epoch_id": "E2"
+  },
+  "config": {
+    "window_id": "D_collapse2",
+    "device": "cuda",
+    "backend": "auto",
+    "iterations": 20000,
+    "learn_time_window": true,
+    "freeze_canonical_iters": 2000,
+    "time_smooth_weight": 0.01,
+    "rigidity_weight": 0.0001,
+    "appearance": { "mode": "affine", "per_shot": true },
+    "deformation": { "pos_freqs": 6, "time_freqs": 6, "hidden": 128, "n_layers": 4, "max_translation_m": 450.0 },
+    "out_dir": "/data/splats",
+    "name": "D_collapse2_4d"
+  },
+  "export_times": [35939.0, 35944.0, 35949.0, 35954.0, 35959.0]
+}

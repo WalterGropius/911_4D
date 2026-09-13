@@ -64,7 +64,17 @@ procedural = [
 ]
 
 # recon: gaussian splat training (static per epoch and 4D)
+# All CPU-installable on Ubuntu x86_64. `torch` resolves to the default PyPI
+# wheel; for a CPU-only install use
+#   pip install -e ".[recon]" --extra-index-url https://download.pytorch.org/whl/cpu
+# `gsplat` (CUDA kernels) is deliberately NOT here -- it is installed in the
+# Modal GPU image and guarded behind `wtc4d.recon.backends.gsplat_available()`.
+# `lpips` is optional too (it downloads weights); evaluate.py skips it when absent.
 recon = [
+    "torch>=2.2",
+    "trimesh>=4.0",
+    "plyfile>=1.0",
+    "pillow>=10.0",
 ]
 
 # infra: Modal apps and job dispatch helpers
