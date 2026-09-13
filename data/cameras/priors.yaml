@@ -1,0 +1,507 @@
+# Camera priors: known or strongly suspected vantage points for 2001-09-11
+# footage of the World Trade Center.
+#
+# Schema: wtc4d.camreg.priors.CameraPriorRecord (a superset of
+# wtc4d.schema.camera.CameraPrior -- extra fields are additive and local to
+# the camreg workstream; a consumer parsing these with the shared CameraPrior
+# model simply ignores them).
+#
+# Fields
+#   id                  stable slug
+#   name                human-readable vantage point
+#   location            lat/lon (WGS84) and alt_m = approximate CAMERA EYE
+#                       height above mean sea level (not above local ground)
+#   position_sigma_m    1-sigma horizontal uncertainty of the camera centre.
+#                       For fixed vantage points this describes the *extent of
+#                       the vantage point* (a promenade is ~200 m long), not a
+#                       survey error.  For aircraft it is deliberately huge.
+#   alt_sigma_m         1-sigma uncertainty of alt_m
+#   moving              True for aircraft, vessels and vehicles
+#   kind                helicopter | fixed_wing | rooftop | observatory |
+#                       ground | bridge | vessel | vehicle | waterfront
+#   region              manhattan | brooklyn | new_jersey | harbour | midtown
+#   confidence          high   = vantage point and its footage are well known
+#                       medium = vantage point certain, specific attributions less so
+#                       low    = plausible/placeholder, needs verification
+#   notes               which famous shots are associated with the vantage point
+#   sources             pointers for verification (kept generic; the corpus
+#                       workstream resolves these to concrete source ids)
+#
+# EVERY position here is approximate.  These records exist to *initialise and
+# constrain* registration (wtc4d.camreg.pnp / render_match), never to assert a
+# location as fact.  Attributions marked confidence: low or "unverified" must
+# not be repeated as established fact anywhere downstream.
+
+priors:
+
+  # --- News and police aircraft ---------------------------------------------
+  # All aircraft entries use the same convention: location = a nominal orbit
+  # centre east/south of the towers over the harbour and Lower Manhattan, with
+  # a sigma that covers the whole plausible orbit.  Registration must solve the
+  # position; the prior only keeps the solver in the right half of the city.
+  - id: wabc_newscopter7
+    name: WABC-TV NewsCopter 7 (helicopter)
+    location: {lat: 40.7050, lon: -74.0050, alt_m: 550.0}
+    position_sigma_m: 2500.0
+    alt_sigma_m: 300.0
+    moving: true
+    kind: helicopter
+    region: harbour
+    confidence: high
+    notes: >-
+      WABC-TV's news helicopter was airborne over Lower Manhattan through the
+      morning and its live feed was carried by ABC and by other networks via
+      pool sharing.  Typical altitude for NYC ENG helicopters that morning was
+      roughly 1000-2000 ft.  Attributing a specific frame to this aircraft
+      rather than another requires the broadcast chyron or the archive record;
+      the prior is only a coarse location constraint.
+    sources: ["archive.org TV News Archive (ABC/WABC air checks)"]
+
+  - id: wnbc_chopper4
+    name: WNBC-TV Chopper 4 (helicopter)
+    location: {lat: 40.7050, lon: -74.0050, alt_m: 550.0}
+    position_sigma_m: 2500.0
+    alt_sigma_m: 300.0
+    moving: true
+    kind: helicopter
+    region: harbour
+    confidence: high
+    notes: >-
+      WNBC's news helicopter; NBC network coverage used its feed.  Same caveat
+      as NewsCopter 7 about attributing individual shots.
+    sources: ["archive.org TV News Archive (NBC/WNBC air checks)"]
+
+  - id: wcbs_chopper2
+    name: WCBS-TV Chopper 2 (helicopter)
+    location: {lat: 40.7050, lon: -74.0050, alt_m: 550.0}
+    position_sigma_m: 2500.0
+    alt_sigma_m: 300.0
+    moving: true
+    kind: helicopter
+    region: harbour
+    confidence: high
+    notes: >-
+      WCBS-TV's news helicopter.  CBS network coverage that morning drew on it
+      as well as on fixed Midtown skyline cameras.
+    sources: ["archive.org TV News Archive (CBS/WCBS air checks)"]
+
+  - id: nypd_aviation
+    name: NYPD Aviation Unit helicopter
+    location: {lat: 40.7100, lon: -74.0080, alt_m: 500.0}
+    position_sigma_m: 2000.0
+    alt_sigma_m: 300.0
+    moving: true
+    kind: helicopter
+    region: manhattan
+    confidence: high
+    notes: >-
+      NYPD Aviation Unit helicopters orbited the complex at close range,
+      including above and beside the towers, and their footage (released years
+      later, notably via FOIA to news organisations) contains the closest
+      airborne views of the impact zones and of both collapses from above.
+      These orbits came much nearer the towers than the ENG helicopters, so
+      the parallax is by far the best of any aerial source.
+    sources: ["NYPD Aviation Unit video released under FOIA (2010)"]
+
+  # --- The Naudet brothers ----------------------------------------------------
+  - id: naudet_jules_lispenard
+    name: Jules Naudet, Lispenard Street at Church Street
+    location: {lat: 40.71960, lon: -74.00545, alt_m: 6.0}
+    position_sigma_m: 60.0
+    alt_sigma_m: 3.0
+    moving: false
+    kind: ground
+    region: manhattan
+    confidence: high
+    notes: >-
+      Street-level position roughly six blocks north-north-east of the WTC,
+      where Jules Naudet was filming FDNY Battalion 1 investigating a reported
+      gas leak.  This is the origin of the only widely known video of the
+      first impact (AA11 into WTC1): the camera tilts up from the street to
+      the north face of the North Tower.  The camera then moved south to the
+      WTC1 lobby, so only the first seconds belong at this position -- treat
+      it as a *shot-start* prior, not a fixed camera.
+    sources: ["'9/11' (2002, Naudet brothers / Goldfish Pictures / CBS)"]
+
+  - id: naudet_duane_street_firehouse
+    name: Gedeon Naudet, FDNY Ladder 1 / Engine 7 firehouse, 100 Duane Street
+    location: {lat: 40.71660, lon: -74.00700, alt_m: 5.0}
+    position_sigma_m: 40.0
+    alt_sigma_m: 3.0
+    moving: false
+    kind: ground
+    region: manhattan
+    confidence: medium
+    notes: >-
+      The firehouse the Naudet documentary was made at; footage from the house
+      and the street outside it covers the morning from roughly 800 m
+      north-north-east of the towers.  Rooftop and street views from this
+      block appear in the film.  Which frames are from the roof vs the street
+      must be decided per shot.
+    sources: ["'9/11' (2002, Naudet brothers)"]
+
+  # --- Brooklyn ----------------------------------------------------------------
+  - id: brooklyn_heights_promenade
+    name: Brooklyn Heights Promenade
+    location: {lat: 40.69650, lon: -73.99650, alt_m: 22.0}
+    position_sigma_m: 200.0
+    alt_sigma_m: 5.0
+    moving: false
+    kind: waterfront
+    region: brooklyn
+    confidence: high
+    notes: >-
+      An elevated esplanade about 1.9 km south-east of the towers with an
+      unobstructed view across the East River.  One of the single most
+      photographed vantage points of the day: the classic wide shots showing
+      both towers burning, the full plume drifting away to the south-east, and
+      both collapses in profile against the sky.  The promenade runs roughly
+      north-south for ~500 m, hence the 200 m sigma; elevation is above the
+      BQE deck, not at river level.
+    sources: ["numerous amateur videos and stills; press photography"]
+
+  - id: fulton_ferry_dumbo
+    name: Fulton Ferry Landing / DUMBO waterfront, Brooklyn
+    location: {lat: 40.70330, lon: -73.99340, alt_m: 4.0}
+    position_sigma_m: 200.0
+    alt_sigma_m: 3.0
+    moving: false
+    kind: waterfront
+    region: brooklyn
+    confidence: medium
+    notes: >-
+      River-level Brooklyn waterfront beneath the Brooklyn Bridge, ~1.6 km
+      east-south-east of the towers.  Views from here put the Brooklyn Bridge
+      in the foreground with the towers behind it -- a composition that is very
+      good for registration, because the bridge towers are surveyed landmarks
+      at a known, much nearer depth, which breaks the focal/range ambiguity.
+    sources: ["amateur video and press photography"]
+
+  # --- New Jersey ---------------------------------------------------------------
+  - id: jc_exchange_place
+    name: Exchange Place waterfront, Jersey City
+    location: {lat: 40.71660, lon: -74.03320, alt_m: 4.0}
+    position_sigma_m: 200.0
+    alt_sigma_m: 3.0
+    moving: false
+    kind: waterfront
+    region: new_jersey
+    confidence: high
+    notes: >-
+      Directly across the Hudson, ~1.7 km west of the towers, at almost the
+      same latitude: the towers appear side by side with the World Financial
+      Center in front of them.  Heavily used by broadcasters for locked-off
+      long-lens shots and by many amateurs.  Because the view is nearly
+      perpendicular to the line between the towers, it is excellent for
+      constraining the *timing* of collapse but poor for depth.
+    sources: ["broadcast pool feeds; extensive amateur video"]
+
+  - id: jc_newport
+    name: Newport / Pavonia waterfront, Jersey City
+    location: {lat: 40.72680, lon: -74.03450, alt_m: 5.0}
+    position_sigma_m: 250.0
+    alt_sigma_m: 4.0
+    moving: false
+    kind: waterfront
+    region: new_jersey
+    confidence: medium
+    notes: >-
+      About 2.2 km north-west of the towers; the view looks south-south-east
+      so the two towers overlap and Midtown is behind the camera.  Includes
+      footage shot from apartment balconies in the Newport towers, which sit
+      tens of metres up -- check for elevated variants of this prior.
+    sources: ["amateur video"]
+
+  - id: hoboken_waterfront
+    name: Hoboken waterfront (Pier A / Sinatra Drive)
+    location: {lat: 40.73700, lon: -74.02750, alt_m: 4.0}
+    position_sigma_m: 300.0
+    alt_sigma_m: 3.0
+    moving: false
+    kind: waterfront
+    region: new_jersey
+    confidence: high
+    notes: >-
+      ~3.0 km north-north-west of the towers.  A long, continuous public
+      waterfront that was crowded with onlookers and cameras; many of the
+      widely circulated amateur videos of the second impact and of both
+      collapses were shot along this stretch.  The towers are seen almost
+      end-on (WTC1 in front of WTC2), which is the worst configuration for
+      resolving them but a good one for silhouette-based registration.
+    sources: ["amateur video"]
+
+  - id: hoboken_castle_point
+    name: Castle Point, Stevens Institute of Technology, Hoboken
+    location: {lat: 40.74490, lon: -74.02470, alt_m: 33.0}
+    position_sigma_m: 120.0
+    alt_sigma_m: 6.0
+    moving: false
+    kind: waterfront
+    region: new_jersey
+    confidence: medium
+    notes: >-
+      The bluff at Castle Point is the highest point on the Hoboken waterfront
+      (~30 m above the river) and gives an elevated, slightly downward-looking
+      view of Lower Manhattan from ~3.9 km north-north-west.  The elevation
+      makes it unusually useful: an elevated camera sees the tops of the
+      intervening Battery Park City buildings, adding depth cues that the
+      river-level vantage points lack.
+    sources: ["amateur video; campus webcams (existence to be verified)"]
+
+  - id: liberty_state_park
+    name: Liberty State Park, Jersey City
+    location: {lat: 40.70600, lon: -74.04450, alt_m: 4.0}
+    position_sigma_m: 400.0
+    alt_sigma_m: 3.0
+    moving: false
+    kind: waterfront
+    region: new_jersey
+    confidence: high
+    notes: >-
+      ~2.7 km south-west of the towers, looking north-east, with the Statue of
+      Liberty to the south-west of the camera.  Wide, open sight line over the
+      water; the park is large, hence the generous sigma.  Views from here
+      look *across* the axis of the two towers at an oblique angle, which is
+      the most informative geometry for separating them in depth.
+    sources: ["amateur video; press photography"]
+
+  - id: weehawken_boulevard_east
+    name: Weehawken, Boulevard East / Hamilton Park (Palisades)
+    location: {lat: 40.76900, lon: -74.01600, alt_m: 58.0}
+    position_sigma_m: 500.0
+    alt_sigma_m: 8.0
+    moving: false
+    kind: waterfront
+    region: new_jersey
+    confidence: medium
+    notes: >-
+      Boulevard East runs along the top of the Palisades ~55-60 m above the
+      Hudson, ~6.5 km north-north-west of the towers.  The classic elevated
+      postcard view of the whole Manhattan skyline; long-lens footage from
+      here shows both towers small but sharp against Midtown-free sky.  Long
+      focal lengths mean the focal/range ambiguity is severe: fix the position
+      from the prior and solve only rotation and focal.
+    sources: ["press photography; amateur video"]
+
+  - id: bayonne_waterfront
+    name: Bayonne waterfront, New Jersey
+    location: {lat: 40.66900, lon: -74.09400, alt_m: 5.0}
+    position_sigma_m: 800.0
+    alt_sigma_m: 4.0
+    moving: false
+    kind: waterfront
+    region: new_jersey
+    confidence: low
+    notes: >-
+      ~8 km south-west of the towers across Upper New York Bay.  Distant
+      footage exists from the Bayonne and Staten Island shores; individual
+      attributions are weak.  Placeholder prior with a large sigma.
+    sources: ["to be verified"]
+
+  # --- Manhattan, at or near the complex ------------------------------------
+  - id: west_street_vesey
+    name: West Street at Vesey Street
+    location: {lat: 40.71450, lon: -74.01420, alt_m: 5.0}
+    position_sigma_m: 80.0
+    alt_sigma_m: 2.0
+    moving: false
+    kind: ground
+    region: manhattan
+    confidence: high
+    notes: >-
+      The north-west corner of the complex, where West Street passes between
+      the WTC and the World Financial Center.  FDNY staging, the pedestrian
+      bridge and 7 WTC are in frame from here.  Extremely steep upward view
+      angles (the towers subtend more than 60 degrees of elevation), so wide
+      lenses and heavy perspective; vertical tower edges dominate the frame
+      and are excellent registration features, but landmark tops are usually
+      out of frame.
+    sources: ["FDNY and press footage; amateur video"]
+
+  - id: church_street
+    name: Church Street between Vesey and Fulton
+    location: {lat: 40.71100, lon: -74.00930, alt_m: 5.0}
+    position_sigma_m: 120.0
+    alt_sigma_m: 2.0
+    moving: false
+    kind: ground
+    region: manhattan
+    confidence: high
+    notes: >-
+      The east side of the complex, looking west at the east faces.  One of
+      the densest concentrations of ground-level footage of the morning,
+      including the approach of the dust cloud up the side streets during both
+      collapses.  Buildings on both sides make this a good street-canyon
+      registration problem (vanishing points are strong, landmark tops are not
+      visible).
+    sources: ["amateur video; press footage"]
+
+  - id: fulton_street_broadway
+    name: Fulton Street at Broadway
+    location: {lat: 40.71010, lon: -74.00870, alt_m: 5.0}
+    position_sigma_m: 120.0
+    alt_sigma_m: 2.0
+    moving: false
+    kind: ground
+    region: manhattan
+    confidence: high
+    notes: >-
+      Two blocks east of the complex.  Views west along Fulton Street frame
+      the towers between the street walls; the same street canyon carried the
+      dust cloud east during the collapses.
+    sources: ["amateur video"]
+
+  - id: battery_park
+    name: Battery Park, Lower Manhattan
+    location: {lat: 40.70330, lon: -74.01700, alt_m: 4.0}
+    position_sigma_m: 250.0
+    alt_sigma_m: 3.0
+    moving: false
+    kind: ground
+    region: manhattan
+    confidence: high
+    notes: >-
+      ~1.0 km south of the towers, with open sky and the harbour behind the
+      camera.  Looking north, the towers rise above the intervening Battery
+      Park City and Deutsche Bank buildings; after the collapses this area was
+      a principal evacuation point (ferries) and is heavily filmed.
+    sources: ["amateur video; press photography"]
+
+  - id: woolworth_building
+    name: Woolworth Building, upper floors (233 Broadway)
+    location: {lat: 40.71237, lon: -74.00814, alt_m: 170.0}
+    position_sigma_m: 30.0
+    alt_sigma_m: 60.0
+    moving: false
+    kind: rooftop
+    region: manhattan
+    confidence: medium
+    notes: >-
+      ~650 m east-north-east of WTC1 and tall enough to look at the impact
+      zones from near their own height.  Any footage from its upper floors is
+      of exceptional value for reconstructing the north and east faces.  The
+      large alt_sigma reflects not knowing which floor a given shot came from;
+      the horizontal position, in contrast, is known to a few tens of metres.
+    sources: ["to be verified per shot"]
+
+  - id: empire_state_observatory
+    name: Empire State Building, 86th floor observatory
+    location: {lat: 40.74844, lon: -73.98565, alt_m: 322.0}
+    position_sigma_m: 40.0
+    alt_sigma_m: 15.0
+    moving: false
+    kind: observatory
+    region: midtown
+    confidence: medium
+    notes: >-
+      ~4.8 km north-north-east of the towers, 320 m up, looking south-south-west
+      down the length of Manhattan.  Tourist video and stills from the open-air
+      deck exist.  A rare *elevated, high, fixed and precisely known* vantage
+      point: excellent for cross-checking other registrations, because both the
+      camera position and several intervening landmarks are surveyed.
+    sources: ["tourist video and stills; to be verified per shot"]
+
+  - id: midtown_skyline_cam
+    name: Midtown Manhattan rooftop skyline camera (network locked-off)
+    location: {lat: 40.75500, lon: -73.98400, alt_m: 200.0}
+    position_sigma_m: 1500.0
+    alt_sigma_m: 120.0
+    moving: false
+    kind: rooftop
+    region: midtown
+    confidence: low
+    notes: >-
+      Networks maintained fixed rooftop cameras in Midtown pointed south at the
+      Lower Manhattan skyline; these supplied much of the continuous
+      long-lens live coverage between helicopter shots, including several of
+      the most reproduced collapse sequences.  The exact rooftops are not
+      encoded here -- this is a *placeholder* covering Midtown rooftops with a
+      deliberately huge sigma.  A locked-off camera is the easiest case to
+      register precisely (position fixed, only rotation and zoom vary), so the
+      priority is identifying the actual rooftops per network.
+    sources: ["network air checks; rooftop identification pending"]
+
+  # --- Bridges, roads, water ---------------------------------------------------
+  - id: brooklyn_bridge
+    name: Brooklyn Bridge (promenade / roadway, mid-span)
+    location: {lat: 40.70610, lon: -73.99690, alt_m: 40.0}
+    position_sigma_m: 500.0
+    alt_sigma_m: 15.0
+    moving: false
+    kind: bridge
+    region: manhattan
+    confidence: high
+    notes: >-
+      The bridge was a principal evacuation route on foot and is the source of
+      many shots looking back west at the towers and, later, at the dust cloud.
+      Cameras moved along the span, so treat the position as a 1-D family along
+      the deck (hence the 500 m sigma) rather than a point; the deck rises from
+      ~35 m at the towers to ~40 m mid-span.
+    sources: ["amateur video; press photography"]
+
+  - id: manhattan_bridge
+    name: Manhattan Bridge (walkway / roadway)
+    location: {lat: 40.70750, lon: -73.99030, alt_m: 40.0}
+    position_sigma_m: 500.0
+    alt_sigma_m: 15.0
+    moving: false
+    kind: bridge
+    region: manhattan
+    confidence: medium
+    notes: >-
+      Similar geometry to the Brooklyn Bridge but ~600 m further east and
+      north, so the towers sit further from the bridge's own structure in
+      frame.  Fewer known shots than the Brooklyn Bridge.
+    sources: ["amateur video"]
+
+  - id: fdr_drive
+    name: FDR Drive / Lower Manhattan east side roadway
+    location: {lat: 40.70850, lon: -73.99850, alt_m: 8.0}
+    position_sigma_m: 700.0
+    alt_sigma_m: 6.0
+    moving: true
+    kind: vehicle
+    region: manhattan
+    confidence: medium
+    notes: >-
+      Dashboard and passenger-window footage shot from moving vehicles on the
+      east-side roadways and around the Brooklyn-Battery Tunnel approaches.
+      At least one video of the first impact is reported to have been shot from
+      a moving vehicle in this area; the attribution should be checked against
+      the corpus record before it is relied on.  Moving: solve per frame, use
+      the prior only as a soft position constraint.
+    sources: ["to be verified per shot"]
+
+  - id: staten_island_ferry
+    name: Staten Island Ferry (harbour crossing)
+    location: {lat: 40.68500, lon: -74.03000, alt_m: 12.0}
+    position_sigma_m: 2500.0
+    alt_sigma_m: 5.0
+    moving: true
+    kind: vessel
+    region: harbour
+    confidence: medium
+    notes: >-
+      The ferries kept running during the morning and later evacuated people
+      from Manhattan.  Deck-level footage from the crossing looks north at the
+      whole of Lower Manhattan from 3-6 km.  The position moves continuously
+      along the Whitehall-St George route, so the prior is a very loose
+      constraint on a known *line*, not a point.
+    sources: ["amateur video"]
+
+  - id: governors_island
+    name: Governors Island
+    location: {lat: 40.68950, lon: -74.01650, alt_m: 6.0}
+    position_sigma_m: 400.0
+    alt_sigma_m: 4.0
+    moving: false
+    kind: waterfront
+    region: harbour
+    confidence: low
+    notes: >-
+      ~2.4 km south of the towers across Buttermilk Channel; the island was a
+      Coast Guard facility in 2001, so any footage is likely official rather
+      than public.  Included because the geometry (open water, unobstructed,
+      due south) makes it a useful hypothesis when a southern harbour view
+      cannot be placed on the Battery or Liberty State Park.
+    sources: ["to be verified"]
