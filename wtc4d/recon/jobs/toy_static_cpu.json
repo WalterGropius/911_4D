@@ -1,0 +1,20 @@
+{
+  "entrypoint": "wtc4d.recon.job:run",
+  "kind": "toy_static",
+  "description": "Dependency-free smoke test: synthetic box towers, 6 cameras, CPU reference rasteriser. Runs in well under a minute and proves an image can train at all.",
+  "iterations": 200,
+  "n_cameras": 6,
+  "width": 48,
+  "height": 36,
+  "n_points": 220,
+  "appearance_jitter": 0.05,
+  "out_dir": "runs/recon",
+  "name": "toy_static",
+  "config": {
+    "device": "cpu",
+    "backend": "cpu",
+    "densify": { "enable": false },
+    "optim": { "iterations": 200 },
+    "output": { "ckpt_interval": 0, "export_ply": true, "coverage": true }
+  }
+}

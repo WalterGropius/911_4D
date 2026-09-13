@@ -1,0 +1,20 @@
+{
+  "entrypoint": "wtc4d.recon.job:run",
+  "kind": "toy_dynamic",
+  "description": "Dependency-free 4D smoke test: a box whose top half collapses plus a drifting dust blob, 6 cameras x 10 timesteps, CPU.",
+  "iterations": 150,
+  "n_cameras": 6,
+  "n_times": 10,
+  "width": 40,
+  "height": 30,
+  "n_points": 140,
+  "out_dir": "runs/recon",
+  "name": "toy_dynamic",
+  "config": {
+    "device": "cpu",
+    "backend": "cpu",
+    "iterations": 150,
+    "learn_time_window": false,
+    "deformation": { "hidden": 32, "n_layers": 3 }
+  }
+}

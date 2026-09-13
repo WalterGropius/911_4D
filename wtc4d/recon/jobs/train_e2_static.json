@@ -1,0 +1,61 @@
+{
+  "entrypoint": "wtc4d.recon.job:run",
+  "kind": "train_static",
+  "description": "Epoch E2 (both towers burning, 09:02:59-09:58:59) static splat. The densest footage window of the day and the first real proof of concept. Needs a GPU: expect ~2-4 h on one A10G/A100 at 30k iterations with ~2M gaussians.",
+  "iterations": 30000,
+  "config": {
+    "epoch_id": "E2",
+    "device": "cuda",
+    "backend": "auto",
+    "background": "learned",
+    "data": {
+      "poses_path": "/data/cameras/poses.jsonl",
+      "frames_dir": "/data/frames",
+      "masks_dir": "/data/masks",
+      "times_path": "/data/time/time_estimates.jsonl",
+      "downscale": 1.0,
+      "epoch_id": "E2",
+      "holdout_every": 8,
+      "keep_untimed": false
+    },
+    "init": {
+      "mesh_points": 400000,
+      "procedural_t": 33000.0,
+      "dedup_radius": 0.5,
+      "sh_degree": 2
+    },
+    "loss": {
+      "l1_weight": 0.8,
+      "ssim_weight": 0.2,
+      "mask_mode": "ignore",
+      "scale_reg": 0.001,
+      "max_scale_m": 40.0,
+      "anchor_weight": 0.02,
+      "anchor_decay_iters": 7000,
+      "depth_weight": 0.05,
+      "depth_from_prior": true
+    },
+    "appearance": { "mode": "affine", "per_shot": false, "lr": 0.001 },
+    "pose_refine": {
+      "enable": true,
+      "refine_focal": true,
+      "max_translation_m": 25.0,
+      "max_rotation_deg": 1.0
+    },
+    "densify": { "enable": true, "start_iter": 500, "stop_iter": 15000, "max_gaussians": 2500000 },
+    "optim": { "iterations": 30000 },
+    "output": {
+      "out_dir": "/data/splats",
+      "name": "E2_static",
+      "ckpt_interval": 5000,
+      "export_ply": true,
+      "residuals": true,
+      "coverage": true
+    }
+  },
+  "manifest": {
+    "asset_id": "E2_static",
+    "url": "E2_static.ply",
+    "out_path": "/data/splats/E2_static/scene.json"
+  }
+}

@@ -1,0 +1,248 @@
+{
+  "shot_id": "demo-brooklyn-promenade",
+  "frame_idx": 0,
+  "image_width": 720,
+  "image_height": 480,
+  "observations": [
+    {
+      "landmark_id": "101_hudson_jc_roof",
+      "u": 113.47789086278678,
+      "v": 283.78829906676737,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "deutsche_bank_roof",
+      "u": 276.52226337259117,
+      "v": 248.7653724214332,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "forty_wall_spire",
+      "u": 291.54530351972755,
+      "v": 147.9914143722738,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "millenium_hilton_roof",
+      "u": 429.04760924212826,
+      "v": 233.71229817251367,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "one_liberty_plaza_roof",
+      "u": 341.76520337545423,
+      "v": 202.47499118164185,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "verizon_roof",
+      "u": 445.2656582462916,
+      "v": 253.37760644745705,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wfc1_roof",
+      "u": 293.46634113463693,
+      "v": 251.33804460154178,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wfc2_roof",
+      "u": 332.6571824697071,
+      "v": 239.91056347828064,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wfc3_roof",
+      "u": 368.44901885824095,
+      "v": 227.11497140406166,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wfc4_roof",
+      "u": 363.3681653052286,
+      "v": 259.83193411080896,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "woolworth_spire",
+      "u": 560.7967734376026,
+      "v": 185.91694707004646,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc1_antenna",
+      "u": 353.0908076316021,
+      "v": 67.77256578695999,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc1_base_ne",
+      "u": 387.91730846163057,
+      "v": 327.4400016382623,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc1_base_nw",
+      "u": 364.3723405572922,
+      "v": 328.46077482462226,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc1_base_se",
+      "u": 364.9468518190253,
+      "v": 329.6951708440848,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc1_base_sw",
+      "u": 340.3505196388589,
+      "v": 327.9837913697583,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc1_roof_ne",
+      "u": 378.13885343118886,
+      "v": 122.76710697840723,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc1_roof_nw",
+      "u": 354.35238061438605,
+      "v": 127.5216386318679,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc1_roof_se",
+      "u": 355.3764382807807,
+      "v": 118.05719517960526,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc1_roof_sw",
+      "u": 332.0441807340428,
+      "v": 119.60995053230047,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc2_base_ne",
+      "u": 351.3020022394045,
+      "v": 329.38980429047854,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc2_base_nw",
+      "u": 325.4993209557326,
+      "v": 335.79164563153455,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc2_base_se",
+      "u": 328.3169442636737,
+      "v": 331.9591020298498,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc2_base_sw",
+      "u": 304.96942128953043,
+      "v": 334.8616381100215,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc2_roof_ne",
+      "u": 346.74365482746174,
+      "v": 109.90305869381558,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc2_roof_nw",
+      "u": 322.19502968346785,
+      "v": 115.45821977387664,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc2_roof_se",
+      "u": 318.16288725915996,
+      "v": 105.26373801814022,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc2_roof_sw",
+      "u": 298.12931984043104,
+      "v": 113.52915044602807,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    },
+    {
+      "landmark_id": "wtc7_roof",
+      "u": 462.98054977361375,
+      "v": 239.13881932197177,
+      "sigma_px": 2.0,
+      "occluded": false,
+      "notes": ""
+    }
+  ],
+  "image_sha256": null,
+  "image_path": null,
+  "camera_prior_id": "brooklyn_heights_promenade",
+  "custom_points": {},
+  "annotator": "camreg-demo",
+  "created_at": "2026-09-13T16:01:26.831733Z",
+  "notes": "SYNTHETIC DEMONSTRATION ANNOTATION: no archival footage was available in this sandboxed development session (no image download/licensing check performed), so these observations were generated by rendering the wtc4d.camreg.synthetic prior from a plausible camera at this vantage point and adding realistic click noise (sigma_px=2.0), rather than by a human clicking a real frame. Replace with a real annotation before treating this pose as authoritative. Classic Brooklyn Heights Promenade view of both towers over the East River.",
+  "schema_version": 1
+}

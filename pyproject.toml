@@ -32,6 +32,14 @@ wtc4d = "wtc4d.cli:main"
 
 # corpus: footage discovery, cataloguing, download, dedup, shot detection
 corpus = [
+    "internetarchive>=5.0",
+    "yt-dlp>=2024.8.1",
+    "opencv-python-headless>=4.9",
+    "scenedetect>=0.6.3",
+    "imagehash>=4.3",
+    "pillow>=10.0",
+    "requests>=2.31",
+    "tqdm>=4.66",
 ]
 
 # sync: temporal alignment of footage to absolute time
@@ -52,18 +60,36 @@ geo = [
 
 # camreg: camera registration (intrinsics + pose in the world frame)
 camreg = [
+    "opencv-python-headless>=4.8",
+    "scipy>=1.11",
+    "pillow>=10.0",
+    "matplotlib>=3.8",
 ]
 
 # procedural: procedural 4D baseline (towers, smoke, collapse) -> gaussians
 procedural = [
+    "Pillow>=10.0",
 ]
 
 # recon: gaussian splat training (static per epoch and 4D)
+# All CPU-installable on Ubuntu x86_64. `torch` resolves to the default PyPI
+# wheel; for a CPU-only install use
+#   pip install -e ".[recon]" --extra-index-url https://download.pytorch.org/whl/cpu
+# `gsplat` (CUDA kernels) is deliberately NOT here -- it is installed in the
+# Modal GPU image and guarded behind `wtc4d.recon.backends.gsplat_available()`.
+# `lpips` is optional too (it downloads weights); evaluate.py skips it when absent.
 recon = [
+    "torch>=2.2",
+    "trimesh>=4.0",
+    "plyfile>=1.0",
+    "pillow>=10.0",
 ]
 
 # infra: Modal apps and job dispatch helpers
 infra = [
+    "modal==1.5.5",
+    "requests>=2.31,<3",
+    "yamllint>=1.35,<2",
 ]
 
 # all: union of the groups above (keep in sync when adding a group)
@@ -77,7 +103,11 @@ dev = [
 ]
 
 [tool.setuptools.packages.find]
-include = ["wtc4d*"]
+# infra* added by the infra workstream: infra/ is a real importable package
+# (infra/dispatch.py, infra/modal/*), not just data files, so it needs the
+# same package discovery as wtc4d* or a strict/PEP 660 editable install
+# (e.g. `uv pip install -e`) won't put it on sys.path.
+include = ["wtc4d*", "infra*"]
 
 [tool.ruff]
 line-length = 100

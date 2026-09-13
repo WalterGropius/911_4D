@@ -1,0 +1,199 @@
+# Curated registry of footage/imagery collections for the 911_4D corpus.
+#
+# Each entry is a source *collection* (not an individual item). `harvest_method`
+# says how `wtc4d corpus harvest --collection <id>` (or a human, for
+# `manual`/`documented` methods) turns it into `Source` records in
+# `data/manifests/sources*.jsonl`. See `wtc4d/corpus/registry.py` for the
+# loader and `wtc4d/corpus/README.md` for coverage stats and next steps.
+#
+# harvest_method values:
+#   api          - a harvester in wtc4d/corpus/harvest/ queries a real API
+#                  and can be re-run to refresh the catalogue.
+#   manual       - no scriptable API; a person catalogues by hand (still
+#                  produces Source records, just not via `corpus harvest`).
+#   documented   - pointer only (e.g. commercial imagery); we record where to
+#                  find it and its license, we do not catalogue individual
+#                  items.
+
+- id: ia_911_tv_archive
+  name: "Understanding 9/11: A Television News Archive"
+  archive: archive.org
+  url: https://archive.org/details/911
+  license: fair-use-research
+  harvest_method: api
+  harvester: wtc4d.corpus.harvest.archive_org
+  est_size: "~3,000 hours, ~5,180 items (verified via internetarchive search, 2026-09-13), ~20 US/international channels"
+  notes: >
+    Off-air TV recordings from Sept 2001, mostly 30-minute blocks per
+    channel with `start_localtime`/`runtime` metadata accurate to the
+    second (gold for temporal sync). Collection identifier `911`. Item
+    metadata is public; some items are `access-restricted-item` (streaming
+    only, no direct file download) but our harvest is metadata-only.
+
+- id: ia_nist_foia_09_42
+  name: "NIST FOIA #09-42 (WTC Investigation video/photo releases 1-42)"
+  archive: nist_foia
+  url: https://archive.org/search?query=identifier%3Anist-foia-09-42-r%2A
+  license: public-domain
+  harvest_method: api
+  harvester: wtc4d.corpus.harvest.nist_foia
+  est_size: "42 release items verified 2026-09-13; release 27 alone totals ~433 GB across 149 files (raw NYPD/network camera-original DV, MPEG2 DVD masters)"
+  notes: >
+    NIST's National Construction Safety Team Act investigation collected
+    videotapes and photographs from broadcasters, NYPD, and private
+    citizens; digitized and FOIA-released in 42 batches (2009-2010),
+    originally distributed via 911datasets.org BitTorrent and now mirrored
+    to archive.org as `nist-foia-09-42-r01` .. `r42`. Highest-quality raw
+    footage available for this event (camera-original DV/Betacam, not
+    broadcast re-encodes). Public domain (US government work). Individual
+    tapes are not separately catalogued yet -- see corpus README "known
+    gaps".
+
+- id: ia_911datasets_mirror
+  name: "911datasets.org general mirror (non-NIST raw footage, off-air dubs)"
+  archive: archive.org
+  url: https://archive.org/details/911datasets
+  license: fair-use-research
+  harvest_method: api
+  harvester: wtc4d.corpus.harvest.nist_foia
+  est_size: "reference index item ~305 GB per its own description; individual clips scattered across archive.org under youtube-* and other identifiers"
+  notes: >
+    911datasets.org (now defunct) aggregated raw camera tapes and full
+    off-air network dubs (uncut, with anchor chatter) beyond what NIST
+    released. Its own site is gone; archive.org holds the index item plus
+    many re-uploaded individual clips (identifiers like
+    `youtube-<id>`, `nist-r27-missing-vids`, `wiki-911datasetsorg`).
+
+- id: wikimedia_commons_911
+  name: "Wikimedia Commons: September 11 attacks categories"
+  archive: wikimedia
+  url: https://commons.wikimedia.org/wiki/Category:September_11_attacks
+  license: varies-per-file
+  harvest_method: api
+  harvester: wtc4d.corpus.harvest.wikimedia
+  est_size: "verified reachable via MediaWiki API 2026-09-13; category tree of several hundred files across the categories listed in notes"
+  notes: >
+    Categories harvested: `Category:September 11 attacks`,
+    `Category:World Trade Center (1973-2001)`,
+    `Category:Collapse of the World Trade Center`,
+    `Category:Aftermath of the September 11 attacks`,
+    `Category:Ground Zero (World Trade Center)`. Mostly photographs with
+    per-file SPDX license (CC-BY(-SA), public-domain-US-gov) and, for
+    original camera uploads, EXIF `DateTimeOriginal`. MediaWiki API
+    requires a descriptive `User-Agent` header or it 403s, and is
+    rate-limited (429) under concurrent load -- the harvester backs off.
+
+- id: youtube_curated
+  name: "YouTube: curated 9/11 archive channels and search queries"
+  archive: youtube
+  url: https://www.youtube.com
+  license: unknown
+  harvest_method: api
+  harvester: wtc4d.corpus.harvest.youtube
+  est_size: "metadata-only; curated query list in harvest/youtube.py, ~20-30 results per query"
+  notes: >
+    No official "9/11 archive" channel API; harvested via `yt-dlp
+    --flat-playlist --dump-json ytsearch<N>:<query>` against a curated
+    query list (network raw feeds, Naudet documentary re-uploads,
+    CameraPlanet compilations, NIST-release re-uploads, anniversary
+    retrospectives with embedded archival clips). Title/channel/duration/
+    view_count only; `upload_date` from search results is unreliable as a
+    footage-date proxy so `time_hint` is left unset for this archive.
+    Only 2-3 tiny clips are ever downloaded (for shot-detection testing);
+    bulk downloading YouTube content is out of scope.
+
+- id: flickr_cc_911
+  name: "Flickr: Creative Commons September 11 photo pools"
+  archive: flickr
+  url: https://www.flickr.com/groups/911/
+  license: cc-by / cc-by-sa (per photo)
+  harvest_method: manual
+  harvester: wtc4d.corpus.harvest.flickr
+  est_size: "unknown; requires a Flickr API key (FLICKR_API_KEY) to enumerate, not available in this environment"
+  notes: >
+    Flickr's REST API (`flickr.photos.search`) can filter by
+    `license` (CC values 1-10), `tags=911,worldtradecenter,groundzero`,
+    `min_upload_date`/`max_upload_date`, and group pools such as
+    `groups/911` and `groups/wtc`. `wtc4d/corpus/harvest/flickr.py`
+    implements the client and record mapping and works once a key is
+    exported as `FLICKR_API_KEY`; without one it raises a clear error
+    rather than silently producing an empty catalogue. Next-session
+    action item: obtain a key and run `wtc4d corpus harvest --collection
+    flickr_cc_911`.
+
+- id: noaa_wtc_aerial_lidar
+  name: "NOAA post-9/11 aerial orthophotography + LiDAR of Ground Zero"
+  archive: noaa
+  url: https://storms.ngs.noaa.gov/
+  license: public-domain
+  harvest_method: manual
+  est_size: "unknown; NOAA NGS + EarthData/NY State OFT LiDAR missions flown 2001-09-15 through 2001-10-23"
+  notes: >
+    NOAA's Cessna Citation II (RC30 film camera + Optech ALTM LiDAR)
+    photographed Ground Zero from 2001-09-23 at ~3,300 ft, following NGS
+    field support from 2001-09-15 (GPS base stations + a calibration site
+    at Liberty State Park, NJ); EarthData ran parallel LiDAR/thermal
+    missions 2001-09-15 to 2001-10-23 for NY State. NOAA's live viewer
+    (`storms.ngs.noaa.gov`, formerly `storms.ngs.noaa.gov/storms/wtc/`) is
+    built for post-2005 hurricane-era imagery and its JSON endpoints
+    return 403 from this environment; no working scriptable API was found
+    for the 2001 mission specifically. Background:
+    https://www.ngs.noaa.gov/RSD/special/sept11/pobarticle.html . Next
+    step: contact NOAA NGS / NCEI directly for the original digital
+    orthophoto and LAS/LiDAR deliverables (see corpus README).
+
+- id: usgs_landsat7_wtc
+  name: "USGS EROS: Landsat 7 ETM+ true-color, WTC smoke plume"
+  archive: usgs
+  url: https://eros.usgs.gov/media-gallery/image-of-the-week/landsat-records-aftermath-of-historic-world-trade-center-attack
+  license: public-domain
+  harvest_method: manual
+  est_size: "1 scene cited (2001-09-12 ~11:30 EDT); WRS-2 path 013 / row 032 (approx, NYC nominal scene -- verify exact scene id in USGS EarthExplorer)"
+  notes: >
+    Landsat 7 ETM+ imaged the Manhattan smoke plume the morning after the
+    attack. USGS EROS "Image of the Week" page (URL above) is the current,
+    live pointer; NASA's companion writeups are at
+    https://science.nasa.gov/earth/earth-observatory/tragedy-in-new-york-city-1753/
+    and https://www.earthdata.nasa.gov/news/feature-articles/following-world-trade-center-plume
+    (MISR/Terra stereo plume-height analysis, JPL). Downloading the actual
+    Level-1 scene requires a (free) USGS EarthExplorer / M2M account, not
+    available in this environment -- catalogued as a pointer only.
+
+- id: commercial_satellite_ikonos_spot
+  name: "Commercial satellite imagery (IKONOS, SPOT) of Lower Manhattan, Sept 2001"
+  archive: other
+  url: https://landinfo.com/september-11-2001-world-trade-center-recovery-efforts/
+  license: proprietary
+  harvest_method: documented
+  harvester: wtc4d.corpus.harvest.noaa_usgs
+  est_size: "IKONOS 1m scenes 2001-09-12 ~11:43 EDT and 2001-09-15 ~11:54 EDT (Space Imaging/DigitalGlobe); SPOT scenes also flown same week"
+  notes: >
+    Highest-resolution commercial imagery of the immediate aftermath;
+    licensed/proprietary, not redistributable. Catalogued as a pointer
+    (reseller: landinfo.com) for the geo workstream to license directly if
+    needed for the E4/E5 rubble-pile static prior; not planned for direct
+    ingestion by corpus.
+
+- id: documentary_pointers
+  name: "Documentary and photographic works (pointers, not redistributed)"
+  archive: other
+  url: https://archive.org/details/september-11th-2001
+  license: varies (all rights reserved unless noted)
+  harvest_method: manual
+  harvester: wtc4d.corpus.harvest.documentary
+  est_size: "handful of named works, catalogued individually as Source records with kind=video/photo and notes describing rights holder"
+  notes: >
+    Jules & Gedeon Naudet, "9/11" (2002, CBS) -- the only crew filming
+    inside WTC1 lobby; full film is not on archive.org, but re-uploads/
+    clips exist (e.g. `youtube-lvAILTYegVI`, "Poor Quality VHS Tape,
+    Largely Watermarked (Recut & Enhanced)" -- itself evidence of multiple
+    generations of copies, worth tracking for provenance). CameraPlanet
+    (Gary Pollard) -- an early citizen-video aggregation effort partially
+    mirrored on archive.org (`youtube-BQmaGCxHxj8` and related). Bill
+    Biggart -- photojournalist killed in the WTC1 collapse; his recovered
+    camera's final photographs are held by the International Center of
+    Photography, documented in the short film `september-11th-2001`
+    (Imperial War Museums) on archive.org. Bolivar Arellano -- NY Post/El
+    Diario photojournalist, iconic ground-level photos; no verified
+    open archive found yet (see corpus README "known gaps" -- worth a
+    direct search of ICP and Bettmann/Getty archives next).
