@@ -265,6 +265,17 @@ LANDMARKS: list[Landmark] = [
         source="wtc4d.geo.wtc (site frame, memorial South Pool)",
     ),
     _lm(
+        "wtc7_roof",
+        "7 World Trade Center (original, 1987) roof",
+        40.7132221,
+        -74.0118180,
+        191.4,
+        185.9,
+        "building_top",
+        sigma_m=8.0,
+        source="wtc4d.geo.wtc (NIST NCSTAR 1A trapezoid, placed against OSM street centrelines)",
+    ),
+    _lm(
         "statue_of_liberty_torch",
         "Statue of Liberty torch",
         40.689247,
