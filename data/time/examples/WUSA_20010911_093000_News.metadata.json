@@ -1,0 +1,50 @@
+{
+ "metadata": {
+  "access-restricted-item": "true",
+  "addeddate": "2011-08-11 10:52:54",
+  "aspect_ratio": "4:3",
+  "audio_codec": "mp2",
+  "audio_sample_rate": "44100",
+  "backup_location": "ia903702_16",
+  "collection": [
+   "TV-WUSA",
+   "tvarchive",
+   "tvnews",
+   "911",
+   "television"
+  ],
+  "color": "color",
+  "contributor": "WUSA",
+  "date": "2001-09-11",
+  "description": "News/Business.",
+  "frames_per_second": "29.97",
+  "identifier": "WUSA_20010911_093000_News",
+  "identifier-access": "http://www.archive.org/details/WUSA_20010911_093000_News",
+  "imagecount": "1796",
+  "mediatype": "movies",
+  "next_item": "WUSA_20010911_100000_News",
+  "notes": "This material may be protected by copyright law (Title 17 U.S. Code).",
+  "previous_item": "WUSA_20010911_090000_News",
+  "publicdate": "2011-08-11 10:52:54",
+  "runtime": "00:29:56",
+  "scandate": "20010911093000",
+  "scanningcenter": "Bowie, MD, USA",
+  "sound": "sound",
+  "source": "Antenna > FutureTel NS320 > tail -c +705447936 V08556-15.mpg; bytes V08556-19.mpg 0 402519039",
+  "source_pixel_height": "480",
+  "source_pixel_width": "480",
+  "sponsor": "Internet Archive",
+  "start_localtime": "2001-09-11 05:30:00",
+  "start_time": "2001-09-11 09:30:00",
+  "stop_time": "2001-09-11 09:59:56",
+  "subject": [
+   "News",
+   "Television Program"
+  ],
+  "title": "News : WUSA : September 11, 2001 5:30am-5:59am EDT",
+  "uploader": "tv@archive.org",
+  "utc_offset": "-400",
+  "video_codec": "mpeg2video",
+  "year": "2001"
+ }
+}

@@ -1,0 +1,36 @@
+# Measured clock offsets of individual cameras / camcorders in the corpus.
+#
+#   true_time = camera_clock_time - offset_s
+#
+# A consumer camera clock in 2001 was set by hand, so an EXIF or DV timestamp
+# is worth minutes, not seconds, until someone pins it down.  The usual way to
+# pin one down: find a frame in that camera's own footage that shows an
+# anchor (an impact fireball, a collapse onset) or a clock bug on a TV in
+# shot, and difference it against the anchor's known time.
+#
+# Until an entry exists for a source, wtc4d.sync.sources_time uses
+# `default_sigma_s` and applies no offset.
+
+default_sigma_s: 300.0   # 5 minutes: a hand-set clock nobody has checked
+
+notes: >
+  Empty on purpose.  Add entries only with an explicit derivation in
+  `evidence`, keyed by the corpus Source.id (preferred, since one camera can
+  appear under several ids) or by the EXIF camera model string.
+
+by_source: {}
+  # example:
+  # yt-XXXXXXXXXXX:
+  #   offset_s: 42.0
+  #   sigma_s: 2.0
+  #   evidence: >
+  #     WTC2 collapse onset detected at file offset 118.3 s; NIST NCSTAR 1
+  #     gives 09:58:59 (+-2 s); the camcorder's own DV timecode at that frame
+  #     reads 09:59:41, hence +42 s.
+
+by_camera: {}
+  # example:
+  # "Canon PowerShot S100":
+  #   offset_s: -3600.0
+  #   sigma_s: 120.0
+  #   evidence: "Clock left on EST; every image is one hour behind EDT."
