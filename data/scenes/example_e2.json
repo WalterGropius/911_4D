@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "name": "911_4D example (E2 placeholder)",
+  "world_origin": {
+    "lat": 40.7112,
+    "lon": -74.0132,
+    "alt_m": 0.0
+  },
+  "t_min": 32579.0,
+  "t_max": 35939.0,
+  "events": [
+    {
+      "id": "wtc2_impact",
+      "name": "UA175 strikes WTC2 (South Tower), floors 77-85, south face",
+      "t": 32579.0,
+      "sigma": 5.0
+    },
+    {
+      "id": "wtc2_collapse",
+      "name": "WTC2 (South Tower) collapse initiation",
+      "t": 35939.0,
+      "sigma": 2.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "E2_static_example",
+      "url": "https://example.org/wtc4d/splats/E2_static.ply",
+      "format": "ply",
+      "t_start": 32579.0,
+      "t_end": 35939.0,
+      "kind": "static",
+      "layer": "scene",
+      "epoch_id": "E2",
+      "notes": "Placeholder example manifest for the viewer workstream to develop against; no real splat has been trained yet (recon has no registered cameras/frames to train on -- see wtc4d/recon/README.md)."
+    }
+  ],
+  "cameras": [],
+  "notes": "Example SceneManifest for the viewer to develop against before any real epoch is trained. See wtc4d/recon/README.md for what is verified on CPU vs. what awaits GPU + real data."
+}
