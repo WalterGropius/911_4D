@@ -1,0 +1,72 @@
+name: Bug report
+description: Something in the code, data, or docs is broken or incorrect.
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For a factual error about the event itself (a wrong time, a wrong
+        coordinate, a mis-cited source), please still use this template —
+        include the source that supports the correction. See
+        `docs/methodology.md` and `docs/ethics.md` ("Contested claims")
+        for how the project handles disagreement between sources.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Which part of the project does this affect?
+      options:
+        - wtc4d/schema (shared models)
+        - wtc4d/world.py or wtc4d/timeline.py
+        - corpus
+        - sync
+        - geo
+        - camreg
+        - procedural
+        - recon
+        - infra
+        - web (viewer)
+        - docs
+        - other / not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What you expected, and what actually happened instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: >-
+        Commands run (e.g. `wtc4d <pkg> ...`), inputs used, and any error
+        output. For a factual/data error, the specific field or value
+        (e.g. a `Source.id`, a `TimeEstimate`, a `Landmark.id`) instead.
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Python version, OS, and `wtc4d` version (`wtc4d info`).
+    validations:
+      required: false
+
+  - type: textarea
+    id: source
+    attributes:
+      label: Supporting source (for factual/data corrections)
+      description: >-
+        A citable source for the correction (NIST report + page, a survey
+        value, an archive.org item). Not needed for code bugs.
+    validations:
+      required: false
