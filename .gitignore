@@ -48,6 +48,9 @@ data/splats/
 !docs/**/*.png
 !docs/**/*.jpg
 !web/public/**/*.png
+# `*.ts` above targets MPEG transport-stream video, not TypeScript source —
+# unblock the viewer workstream's actual codebase.
+!web/**/*.ts
 
 # misc
 .DS_Store

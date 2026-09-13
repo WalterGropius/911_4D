@@ -1,0 +1,293 @@
+{
+  "schema_version": 1,
+  "name": "911_4D sample scene (mock)",
+  "world_origin": {
+    "lat": 40.7112,
+    "lon": -74.0132,
+    "alt_m": 0
+  },
+  "t_min": 28800,
+  "t_max": 45000,
+  "events": [
+    {
+      "id": "wtc1_impact",
+      "name": "AA11 strikes WTC1 (North Tower)",
+      "t": 31590,
+      "sigma": 5
+    },
+    {
+      "id": "wtc2_impact",
+      "name": "UA175 strikes WTC2 (South Tower)",
+      "t": 32579,
+      "sigma": 5
+    },
+    {
+      "id": "wtc2_collapse",
+      "name": "WTC2 collapse",
+      "t": 35939,
+      "sigma": 2
+    },
+    {
+      "id": "wtc1_collapse",
+      "name": "WTC1 collapse",
+      "t": 37702,
+      "sigma": 2
+    }
+  ],
+  "assets": [
+    {
+      "id": "ground",
+      "url": "ground.ply",
+      "format": "ply",
+      "t_start": 28800,
+      "t_end": 45000,
+      "kind": "static",
+      "layer": "ground",
+      "epoch_id": null,
+      "notes": "Mock plaza/street disc, constant through the whole window."
+    },
+    {
+      "id": "wtc1_tower",
+      "url": "wtc1_tower.ply",
+      "format": "ply",
+      "t_start": 28800,
+      "t_end": 37702,
+      "kind": "static",
+      "layer": "towers",
+      "epoch_id": null,
+      "notes": "Mock WTC1 facade box; visible until its collapse initiation."
+    },
+    {
+      "id": "wtc2_tower",
+      "url": "wtc2_tower.ply",
+      "format": "ply",
+      "t_start": 28800,
+      "t_end": 35939,
+      "kind": "static",
+      "layer": "towers",
+      "epoch_id": null,
+      "notes": "Mock WTC2 facade box; visible until its collapse initiation."
+    },
+    {
+      "id": "wtc1_rubble",
+      "url": "wtc1_rubble.ply",
+      "format": "ply",
+      "t_start": 37702,
+      "t_end": 45000,
+      "kind": "static",
+      "layer": "debris",
+      "epoch_id": null,
+      "notes": "Mock debris mound at the WTC1 footprint after collapse."
+    },
+    {
+      "id": "wtc2_rubble",
+      "url": "wtc2_rubble.ply",
+      "format": "ply",
+      "t_start": 35939,
+      "t_end": 45000,
+      "kind": "static",
+      "layer": "debris",
+      "epoch_id": null,
+      "notes": "Mock debris mound at the WTC2 footprint after collapse."
+    },
+    {
+      "id": "smoke_plume",
+      "url": "smoke_plume.ply",
+      "format": "ply",
+      "t_start": 31590,
+      "t_end": 45000,
+      "kind": "static",
+      "layer": "smoke",
+      "epoch_id": null,
+      "notes": "Single mock plume puff; not time-varying. Real smoke is a `procedural` deliverable."
+    }
+  ],
+  "cameras": [
+    {
+      "id": "cam_brooklyn_promenade",
+      "shot_id": "cam_brooklyn_promenade",
+      "frame_idx": 0,
+      "t": 31710,
+      "c2w": [
+        0.8073309632186242,
+        -0.04115104512814765,
+        -0.5886623032888633,
+        1400,
+        0.5900989034293221,
+        0.056299906181302824,
+        0.8053655100235471,
+        -1900,
+        0,
+        -0.997565492611306,
+        0.06973584409155986,
+        35,
+        0,
+        0,
+        0,
+        1
+      ],
+      "intrinsics": {
+        "width": 1280,
+        "height": 720,
+        "fx": 1758.3855484509584,
+        "fy": 1758.3855484509584,
+        "cx": 640,
+        "cy": 360,
+        "model": "OPENCV",
+        "dist": []
+      },
+      "thumbnail_url": null,
+      "source_url": null,
+      "label": "Brooklyn Heights Promenade (mock)"
+    },
+    {
+      "id": "cam_jersey_city",
+      "shot_id": "cam_jersey_city",
+      "frame_idx": 0,
+      "t": 32609,
+      "c2w": [
+        -0.08951542023132361,
+        0.11041496299893233,
+        0.9898462130486503,
+        -1600,
+        -0.9959854364099955,
+        -0.009923681061343162,
+        -0.08896364995537898,
+        150,
+        0,
+        -0.9938360309931097,
+        0.11086001758913289,
+        20,
+        0,
+        0,
+        0,
+        1
+      ],
+      "intrinsics": {
+        "width": 1280,
+        "height": 720,
+        "fx": 1758.3855484509584,
+        "fy": 1758.3855484509584,
+        "cx": 640,
+        "cy": 360,
+        "model": "OPENCV",
+        "dist": []
+      },
+      "thumbnail_url": null,
+      "source_url": null,
+      "label": "Jersey City waterfront (mock)"
+    },
+    {
+      "id": "cam_helicopter",
+      "shot_id": "cam_helicopter",
+      "frame_idx": 0,
+      "t": 32979,
+      "c2w": [
+        -0.8957451347601234,
+        0.1421504367904433,
+        -0.42122904324589794,
+        600,
+        0.44456794031235364,
+        0.2864141801804321,
+        -0.8487203684594841,
+        1200,
+        0,
+        -0.9475020689749744,
+        -0.3197496353213602,
+        650,
+        0,
+        0,
+        0,
+        1
+      ],
+      "intrinsics": {
+        "width": 1280,
+        "height": 720,
+        "fx": 1758.3855484509584,
+        "fy": 1758.3855484509584,
+        "cx": 640,
+        "cy": 360,
+        "model": "OPENCV",
+        "dist": []
+      },
+      "thumbnail_url": null,
+      "source_url": null,
+      "label": "News helicopter, orbiting (mock)"
+    },
+    {
+      "id": "cam_street_level",
+      "shot_id": "cam_street_level",
+      "frame_idx": 0,
+      "t": 37642,
+      "c2w": [
+        -0.6327543775755495,
+        -0.3071656807517441,
+        -0.7108242695823607,
+        250,
+        0.774352566767218,
+        -0.25099733309861616,
+        -0.5808428712813849,
+        300,
+        0,
+        -0.9179594671583816,
+        0.3966741945908506,
+        2,
+        0,
+        0,
+        0,
+        1
+      ],
+      "intrinsics": {
+        "width": 1280,
+        "height": 960,
+        "fx": 1229.4285612615463,
+        "fy": 1229.4285612615463,
+        "cx": 640,
+        "cy": 480,
+        "model": "OPENCV",
+        "dist": []
+      },
+      "thumbnail_url": null,
+      "source_url": null,
+      "label": "Church St, street level (mock)"
+    },
+    {
+      "id": "cam_midtown",
+      "shot_id": "cam_midtown",
+      "frame_idx": 0,
+      "t": 35959,
+      "c2w": [
+        -0.9459261958387452,
+        0.00047985540702673426,
+        -0.32438156816445074,
+        2200,
+        0.3243819230876466,
+        0.0013993005387011271,
+        -0.9459251608515139,
+        6400,
+        0,
+        -0.9999989058477968,
+        -0.0014792914551440012,
+        210,
+        0,
+        0,
+        0,
+        1
+      ],
+      "intrinsics": {
+        "width": 1280,
+        "height": 720,
+        "fx": 6089.193250702455,
+        "fy": 6089.193250702455,
+        "cx": 640,
+        "cy": 360,
+        "model": "OPENCV",
+        "dist": []
+      },
+      "thumbnail_url": null,
+      "source_url": null,
+      "label": "Midtown rooftop, long lens (mock)"
+    }
+  ],
+  "notes": "Synthetic placeholder scene generated by web/scripts/make-mock-scene.ts. Geometry is illustrative only (simple boxes/mounds/blobs at correct ENU positions and heights from wtc4d/world.py) — not a reconstruction. Camera poses are straight look-at shots from plausible vantage points, not registered against real footage."
+}
