@@ -1,0 +1,13 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Sensitive request (family/rights-holder, takedown, safety)
+    url: https://github.com/waltergropius/911_4D/issues/new
+    about: >-
+      For a request from a victim's family, a rights-holder takedown, or
+      anything sensitive per docs/ethics.md or SECURITY.md: open a regular
+      issue and mark it private/sensitive if your GitHub plan supports it,
+      or note in the title that it's sensitive so maintainers can follow
+      up outside the public thread.
+  - name: Project plan and workstreams
+    url: https://github.com/waltergropius/911_4D/blob/main/PLAN.md
+    about: Read the master plan before filing a feature request.
