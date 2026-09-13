@@ -206,14 +206,27 @@ CPU `base_image` (ffmpeg, yt-dlp, `ia`, opencv, numpy, pydantic).
 
 ## Verification status
 
-After merging, this workstream triggered `modal-job.yml` on `main` with
-`{"kind": "smoke_test_gpu"}` via the GitHub MCP `actions_run_trigger` tool
-to confirm the whole path end-to-end. Since `MODAL_TOKEN_ID` /
-`MODAL_TOKEN_SECRET` are not yet configured on the repo (this session
-cannot add them — only a repo admin can, per section 1 above), the run is
-expected to fail at the "Check Modal secrets" step with the explicit
-`::error::` message described there, rather than a confusing Modal auth
-failure. **The orchestrator should ask the repo owner to add the two
-secrets**; once that's done, re-running the same workflow (or triggering it
-again) should reach the real `modal run` step and produce a
-`{"ok": true, "cuda_available": true, ...}` result for a GPU'd run.
+After merging, this workstream attempted to trigger `modal-job.yml` on
+`main` with `{"kind": "smoke_test_gpu"}` via the GitHub MCP
+`actions_run_trigger` tool, to confirm the whole path end-to-end. **The
+call itself was denied**: `403 Resource not accessible by integration` —
+the MCP integration's own token does not have the `actions:write`
+permission needed to dispatch a workflow (see `infra/dispatch.py`'s
+handling of exactly this case). It was not a job failure; the workflow run
+never started.
+
+So there are two things for **the orchestrator / repo owner** to do before
+this is fully verified end-to-end:
+
+1. Trigger `modal-job.yml` on `main` (`{"kind": "smoke_test_gpu"}`) through
+   a channel that does have `actions:write` — the Actions UI, `gh workflow
+   run modal-job.yml --ref main -f job_spec='{"kind": "smoke_test_gpu"}'
+   -f gpu=none -f timeout_min=15 -f ref=main`, or `infra/dispatch.py` with a
+   `GH_TOKEN`/`GITHUB_TOKEN` that has it.
+2. Add the `MODAL_TOKEN_ID` / `MODAL_TOKEN_SECRET` repository secrets (see
+   section 1 above) — until then, expect that run to fail at the "Check
+   Modal secrets" step with the explicit `::error::` message described
+   there, which is the intended, clear failure mode rather than a
+   confusing Modal auth error. Once both are in place, re-running should
+   reach the real `modal run` step and produce a `{"ok": true,
+   "cuda_available": true, ...}` result for a GPU'd run.
