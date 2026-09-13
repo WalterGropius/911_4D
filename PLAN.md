@@ -89,3 +89,29 @@ plus per-epoch static splats and time-tagged smoke gaussians.
 - Never commit media; catalogue and pointer only.  Derived works only.
 - Respect victims: no emphasis on individuals; content warnings in viewer.
 - Every number has a source and a sigma.
+
+## 8. Phase 1 execution log
+
+Spawned 2026-09-13 by the orchestrator session. Each session works on its own
+branch, opens a PR to `main`, and squash-merges it when CI is green.
+
+| workstream | model | branch | session |
+|---|---|---|---|
+| corpus | Sonnet | `claude/ws-corpus` | `session_019TBteADJeDdrjh7DpmfBHp` |
+| infra | Sonnet | `claude/ws-infra` | `session_01Vf1sSowYy5zCfBpgeaBr9C` |
+| geo | Opus | `claude/ws-geo` | `session_01H5YB5HiyiMTLSknGbCT1kv` |
+| sync | Opus | `claude/ws-sync` | `session_01PMJV3ZDjoTvWc6yyL77K2X` |
+| camreg | Opus | `claude/ws-camreg` | `session_01B3SCJAEYLV9k53wFwvQxQx` |
+| procedural | Sonnet | `claude/ws-procedural` | `session_01CcWbrXmyRtktqrHnw8XBFK` |
+| recon | Opus | `claude/ws-recon` | `session_017iVMdP2SYy1uvHQeqDYASq` |
+| viewer | Sonnet | `claude/ws-viewer` | `session_01SUxZAfi1ekGqiBPb37R84P` |
+| docs | Sonnet | `claude/ws-docs` | `session_01Y6fwaEFdsHBBaBx9VUHkue` |
+
+Blockers outside the sessions' control:
+
+- Modal is unreachable from cloud sessions (gRPC through the egress proxy is
+  not supported). GPU jobs run through GitHub Actions; the repository owner
+  must add the secrets `MODAL_TOKEN_ID` and `MODAL_TOKEN_SECRET`
+  (Settings -> Secrets and variables -> Actions).
+- Public hosting of large derived data (splats, frame stores) needs a
+  Hugging Face token or a bucket; not required for phase 1.
